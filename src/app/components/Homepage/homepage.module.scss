@@ -1,15 +1,28 @@
-.main{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5vw ;
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 0 16vw;
 }
 
-.splitScreen{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
+.heading {
+  display: flex;
+  gap: 50px;
+}
+
+@media screen and (max-width: 900px) {
+  .main {
+    padding: 4vw;
+  }
+}
+
+.profileImage {
+  border-radius: 50%;
+}
+
+.splitScreen {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
 }
