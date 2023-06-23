@@ -2,6 +2,8 @@
 import React from "react";
 import styles from "./homepage.module.scss";
 import Image from "next/image";
+import Typerwritter from "../Typewritter";
+import Portfolio from "../Portfolio";
 
 const Homepage = () => {
   return (
@@ -20,9 +22,7 @@ const Homepage = () => {
             </div>
             <div>
               <h1>I'm Matheus Finatto. </h1>
-              <p>
-                A web developer with a passion for programming. <br />
-              </p>
+              <Typerwritter fullText="A  web developer with a passion for programming. " />
             </div>
           </div>
           <div>
@@ -84,6 +84,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <Portfolio />
     </main>
   );
 };

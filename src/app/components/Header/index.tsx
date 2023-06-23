@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import styles from "./navbar.module.scss";
+import Typerwritter from "../Typewritter";
 
 const Navbar = () => {
   return (
