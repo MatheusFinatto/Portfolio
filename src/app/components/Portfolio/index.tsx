@@ -10,15 +10,11 @@ const Portfolio = () => {
       "https://api.github.com/users/MatheusFinatto/repos",
       {
         headers: {
-          Authorization: "Bearer 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",
+          Authorization: "Bearer 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",
         },
       }
     );
     const fetchedRepos = await response.json();
-    console.log(
-      "🚀 ~ file: index.tsx:17 ~ fetchRepos ~ fetchedRepos:",
-      fetchedRepos
-    );
     setRepos(fetchedRepos);
   };
 
@@ -27,9 +23,10 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section>
+    <section className={styles.portfolio}>
       <h1>Projects</h1>
       <ul className={styles.repoList}>
+        {/* TODO: Make the repos appear in cards with css */}
         {repos.length ? (
           repos.map(({ id, name, html_url }) => (
             <li key={id}>
