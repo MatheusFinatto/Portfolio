@@ -1,18 +1,18 @@
 "use client";
 import { TypeAnimation } from "react-type-animation";
 
-const Typerwritter = ({ fullText }: { fullText: string }) => {
+const TypeWritter = ({ fullText }: { fullText: string }) => {
   return (
     <TypeAnimation
       sequence={[
         // Same substring at the start will only be typed out once, initially
-        "I am a web developer;",
-        1000, // wait 1s before replacing "Mice" with "Hamsters"
-        "I am a Computer Science student;",
+        "And I am a web developer;",
         1000,
-        "I am a holder of a business administration degree;",
+        "And I am a Computer Science student;",
         1000,
-        "I am a lover of learning new things;",
+        "And I am a Bachelor in Business Administration;",
+        1000,
+        "And I am a lover of learning new things;",
         1000,
       ]}
       wrapper="span"
@@ -23,4 +23,4 @@ const Typerwritter = ({ fullText }: { fullText: string }) => {
   );
 };
 
-export default Typerwritter;
+export default TypeWritter;

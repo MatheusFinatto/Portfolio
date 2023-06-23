@@ -2,12 +2,24 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 16vw;
+  padding: 0 25vw;
 }
 
 .heading {
   display: flex;
   gap: 50px;
+  width: 100%;
+}
+
+.headingText {
+  margin-top: 30px;
+  min-height: 160px;
+  max-width: 240px;
+}
+
+.profileImageContainer {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 900px) {
@@ -25,4 +37,18 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-evenly;
+}
+
+.profileInfo {
+  margin-top: 30px;
+  max-width: 50%;
+}
+
+@media screen and (max-width: 900px) {
+  .splitScreen {
+    flex-direction: column;
+  }
+  .profileInfo {
+    max-width: 100%;
+  }
 }

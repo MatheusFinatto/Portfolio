@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import styles from "./navbar.module.scss";
-import Typerwritter from "../Typewritter";
+import styles from "./header.module.scss";
+import Nav from "../Nav";
 
 const Navbar = () => {
   return (
@@ -9,7 +9,9 @@ const Navbar = () => {
       <div>
         <h1>Hi, my name is Matheus :)</h1>
         <h2>And this is my portfolio's showcase</h2>
+        <Nav />
       </div>
+
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160">
         <path
           fill="#131313"
