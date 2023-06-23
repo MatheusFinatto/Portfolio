@@ -1,8 +1,22 @@
+$main-padding: 0 25%;
+$breakpoints: (
+  "(max-width: 1650px)": 20%,
+  "(max-width: 1400px)": 15%,
+  "(max-width: 1200px)": 10%,
+  "(max-width: 1050px)": 5%,
+);
+
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 25vw;
+  padding: $main-padding;
+
+  @each $breakpoint, $padding in $breakpoints {
+    @media screen and #{$breakpoint} {
+      padding: 0 $padding;
+    }
+  }
 }
 
 .heading {
@@ -20,12 +34,6 @@
 .profileImageContainer {
   display: flex;
   align-items: center;
-}
-
-@media screen and (max-width: 900px) {
-  .main {
-    padding: 4vw;
-  }
 }
 
 .profileImage {

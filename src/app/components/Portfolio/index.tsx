@@ -10,7 +10,7 @@ const Portfolio = () => {
       "https://api.github.com/users/MatheusFinatto/repos",
       {
         headers: {
-          Authorization: "Bearer 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",
+          Authorization: "Bearer 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",
         },
       }
     );
@@ -30,11 +30,20 @@ const Portfolio = () => {
     <section>
       <h1>Projects</h1>
       <ul className={styles.repoList}>
-        {repos.map(({ id, name, html_url }) => (
-          <li key={id}>
-            <a href={html_url}>{name}</a>
-          </li>
-        ))}
+        {repos.length ? (
+          repos.map(({ id, name, html_url }) => (
+            <li key={id}>
+              <a href={html_url}>{name}</a>
+            </li>
+          ))
+        ) : (
+          <div>
+            <span>
+              Error loading repos. Access github.com/MatheusFinatto to see them
+            </span>
+            <p>And please report this error to me if you see it :)</p>
+          </div>
+        )}
       </ul>
     </section>
   );
