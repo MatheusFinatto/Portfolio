@@ -1,3 +1,5 @@
+@use "/src/app/variables";
+
 .nav ul {
   position: relative;
   z-index: 999;
@@ -15,11 +17,11 @@
       background-color: midnightblue;
       border-radius: 30px;
       font-size: 0.9rem;
-    }
-    a:hover {
-      cursor: pointer;
-      background-color: rgb(3, 3, 53);
-      transition: linear 0.4s;
+      &:hover {
+        cursor: pointer;
+        background-color: variables.$button-hover-color;
+        transition: variables.$button-transition;
+      }
     }
   }
 }

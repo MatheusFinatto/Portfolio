@@ -1,7 +1,7 @@
 "use client";
 import { TypeAnimation } from "react-type-animation";
 
-const TypeWritter = ({ fullText }: { fullText: string }) => {
+const TypeWritter = () => {
   return (
     <TypeAnimation
       sequence={[

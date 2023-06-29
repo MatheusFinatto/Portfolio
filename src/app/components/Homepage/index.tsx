@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./homepage.module.scss";
 import Image from "next/image";
 import TypeWritter from "../TypeWritter";
-import Portfolio from "../Portfolio";
+import Portfolio from "../Projects";
 
 const Homepage = () => {
   return (
@@ -21,16 +21,17 @@ const Homepage = () => {
           </div>
           <div className={styles.headingText}>
             <h1>I'm Matheus Finatto. </h1>
-            <TypeWritter fullText="A  web developer with a passion for programming. " />
+            <TypeWritter />
           </div>
         </div>
         <div className={styles.profileInfo}>
-          <h1>This is my showcase.</h1>
+          <h1>What is this site for?</h1>
           <p>
-            Here, you will be able to see my portfolio, projects, and
-            achievements.
+            Here, you will be able to see my portfolio, some things about me and
+            download my CV.
           </p>
-          <p>Hope you enjoy! :D</p>
+          <br />
+          <p>Hope you like it :)</p>
         </div>
 
         {/* <div className={styles.splitScreen}>
