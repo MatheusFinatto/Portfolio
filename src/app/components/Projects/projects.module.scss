@@ -1,19 +1,6 @@
 @use "src/app/variables";
 
-.projects {
-  text-align: center;
-  h1 {
-    margin: 50px 0 30px 0;
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1rem;
-    padding: 0 18%;
-  }
-}
-
 .repoList {
-  margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -52,18 +39,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  button {
-    padding: 5px 5px;
-    border-radius: 5px;
-    border: none;
-    background-color: midnightblue;
-    color: whitesmoke;
-    &:hover {
-      cursor: pointer;
-      background-color: variables.$button-hover-color;
-      transition: variables.$button-transition;
-    }
-  }
 }
 
 .description {

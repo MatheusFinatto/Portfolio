@@ -1,0 +1,15 @@
+@use "/src/app/variables.scss";
+
+button {
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: midnightblue;
+  color: whitesmoke;
+  &:hover {
+    cursor: pointer;
+    background-color: variables.$button-hover-color;
+    transition: variables.$button-transition;
+  }
+}

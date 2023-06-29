@@ -5,14 +5,13 @@ const TypeWritter = () => {
   return (
     <TypeAnimation
       sequence={[
-        // Same substring at the start will only be typed out once, initially
-        "And I am a web developer;",
+        "And I am a web developer 💻;",
         1000,
-        "And I am a Computer Science student;",
+        "And I am a Computer Science student 🎓;",
         1000,
-        "And I am a Bachelor in Business Administration;",
+        "And I am a Bachelor in Business Administration 🏢;",
         1000,
-        "And I am a lover of learning new things;",
+        "And I am a lover of learning new things 📚;",
         1000,
       ]}
       wrapper="span"

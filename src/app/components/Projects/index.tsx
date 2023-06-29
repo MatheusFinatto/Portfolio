@@ -18,25 +18,28 @@ type RepoType = {
 const Projects = () => {
   const [repos, setRepos] = useState<RepoType[]>([]);
   const [loading, setLoading] = useState(true);
+  const username = "MatheusFinatto";
+
   const fetchRepos = async () => {
-    setLoading(true);
-    const authToken = process.env.AUTH_TOKEN || "";
-    const response = await fetch(
-      "https://api.GitHub.com/users/MatheusFinatto/starred",
-      {
-        headers: {
-          Authorization: authToken,
-        },
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${username}/starred`
+      );
+
+      const fetchedRepos: RepoType[] = await response.json();
+      console.log(
+        "🚀 ~ file: index.tsx:34 ~ fetchRepos ~ fetchedRepos:",
+        fetchedRepos
+      );
+      if (fetchedRepos.length) {
+        fetchedRepos.sort((a, b) => b.created_at.localeCompare(a.created_at));
       }
-    );
-    const fetchedRepos: RepoType[] = await response.json();
-    fetchedRepos.sort((a, b) => b.created_at.localeCompare(a.created_at));
-    console.log(
-      "🚀 ~ file: index.tsx:21 ~ fetchRepos ~ fetchedRepos:",
-      fetchedRepos
-    );
-    setRepos(fetchedRepos);
-    setLoading(false);
+      setRepos(fetchedRepos);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -46,22 +49,31 @@ const Projects = () => {
   if (loading) {
     return (
       <section className={styles.projects}>
-        <p>Loading...</p>
+        <div>
+          <h1>Projects</h1>
+          <h2>
+            Here are displayed my GitHub projects. Some of them are deployed on
+            hosting sites, and can be acessed through the button &#34;See the
+            deployed app&#34;.
+          </h2>
+          <p>Loading...</p>
+        </div>
       </section>
     );
   }
 
   return (
     <section className={styles.projects}>
-      <h1>Projects</h1>
-      <h2>
-        Here are displayed my GitHub projects. Some of them are deployed on
-        hosting sites, and can be acessed through the button &#34;See the
-        deployed app&#34;.
-      </h2>
+      <div>
+        <h1>Projects</h1>
+        <h2>
+          Here are displayed my GitHub projects. Some of them are deployed on
+          hosting sites, and can be acessed through the button &#34;See the
+          deployed app&#34;.
+        </h2>
+      </div>
       <ul className={styles.repoList}>
-        {/* TODO: Make the repos appear in cards with css */}
-        {repos.length ? (
+        {repos.length &&
           repos.map((repo: RepoType) => {
             const { id, name, homepage, description, html_url, created_at } =
               repo;
@@ -92,16 +104,21 @@ const Projects = () => {
                 </div>
               </li>
             );
-          })
-        ) : (
-          <div>
-            <span>
-              Error loading repos. Access GitHub.com/MatheusFinatto to see them
-            </span>
-            <p>And please report this error to me if you see it :)</p>
-          </div>
-        )}
+          })}
       </ul>
+      {!repos.length && (
+        <div>
+          <span>
+            Error loading repos.
+            <br />
+            Access GitHub.com/MatheusFinatto to see them
+          </span>
+          <p>And please report this error to me if you see it :)</p>
+          <button onClick={() => alert("Thank you for reporting")}>
+            Report error
+          </button>
+        </div>
+      )}
     </section>
   );
 };

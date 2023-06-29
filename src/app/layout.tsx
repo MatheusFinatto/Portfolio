@@ -1,4 +1,6 @@
-import "./globals.scss";
+import "./styles/globals.scss";
+import "./styles/button.scss";
+import "./styles/section.scss";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });

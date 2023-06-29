@@ -1,0 +1,7 @@
+@use "/src/app/variables.scss";
+
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}

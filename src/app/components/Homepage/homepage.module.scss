@@ -1,6 +1,5 @@
-$main-padding: 0 25%;
+$main-padding: 0 20%;
 $breakpoints: (
-  "(max-width: 1650px)": 20%,
   "(max-width: 1400px)": 15%,
   "(max-width: 1200px)": 10%,
   "(max-width: 1050px)": 5%,
@@ -26,6 +25,7 @@ $breakpoints: (
   justify-content: space-between;
   padding: 0 20px;
   h1 {
+    text-align: start;
     margin-top: 30px;
     color: rgb(184, 40, 40);
   }
@@ -33,11 +33,16 @@ $breakpoints: (
     display: flex;
     gap: 30px;
     > .headingText {
+      text-align: start;
       margin-top: 30px;
       min-height: 180px;
-      width: 250px;
+      width: 310px;
     }
   }
+}
+
+.profileImage {
+  border-radius: 50%;
 }
 
 .profileImageContainer {
@@ -45,13 +50,11 @@ $breakpoints: (
   align-items: center;
 }
 
-.profileImage {
-  border-radius: 50%;
-}
-
 .profileInfo {
+  text-align: start;
   margin-top: 30px;
   width: 350px;
+  height: 180px;
 }
 
 @media screen and (max-width: 800px) {
@@ -59,8 +62,9 @@ $breakpoints: (
     align-items: center;
   }
   .splitScreen {
+    align-items: center;
     flex-direction: column;
-    width: 300px;
+    width: 100%;
   }
   .profileInfo {
     max-width: 100%;

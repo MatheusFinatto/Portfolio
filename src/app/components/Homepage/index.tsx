@@ -4,6 +4,7 @@ import styles from "./homepage.module.scss";
 import Image from "next/image";
 import TypeWritter from "../TypeWritter";
 import Portfolio from "../Projects";
+import CVDownload from "../CVDownload";
 
 const Homepage = () => {
   return (
@@ -33,46 +34,10 @@ const Homepage = () => {
           <br />
           <p>Hope you like it :)</p>
         </div>
-
-        {/* <div className={styles.splitScreen}>
-          <div>
-            <p>
-              My name is Matheus Finatto, a brazilian web developer with a
-              passion for programming. Through this portfolio, I'm excited to
-              showcase my skills, projects, and achievements.
-            </p>
-            <p>
-              Here, ill share some of my work, that I have created over the
-              years, using a variety of technologies, with enphasis on HTML,
-              CSS, and JavaScript, and React. With years of experience and a
-              strong
-            </p>
-            <p>
-              Feel free to browse through my portfolio and reach out if you have
-              any inquiries, collaboration opportunities, or simply want to
-              connect. Hope you enjoy! :D
-            </p>
-          </div>
-          <div>
-            <p>
-              My name is Matheus Finatto, a brazilian web developer with a
-              passion for programming. Through this portfolio, I'm excited to
-              showcase my skills, projects, and achievements.
-            </p>
-            <p>
-              Here, ill share some of my work, that I have created over the
-              years, using a variety of technologies, with enphasis on HTML,
-              CSS, and JavaScript, and React. With years of experience and a
-              strong
-            </p>
-            <p>
-              Feel free to browse through my portfolio and reach out if you have
-              any inquiries, collaboration opportunities, or simply want to
-              connect. Hope you enjoy! :D
-            </p>
-          </div>
-        </div> */}
       </section>
+
+      {/* <Contact /> */}
+      <CVDownload />
       <Portfolio />
     </main>
   );
