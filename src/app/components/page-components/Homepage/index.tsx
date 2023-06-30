@@ -2,9 +2,10 @@
 import React from "react";
 import styles from "./homepage.module.scss";
 import Image from "next/image";
-import TypeWritter from "../TypeWritter";
-import Portfolio from "../Projects";
-import CVDownload from "../CVDownload";
+import TypeWritter from "./TypeWritter";
+import Portfolio from "../../page-sections/Projects";
+import CVDownload from "../../page-sections/CVDownload";
+import About from "../../page-sections/About";
 
 const Homepage = () => {
   return (
@@ -36,7 +37,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* <Contact /> */}
+      <About />
       <CVDownload />
       <Portfolio />
     </main>

@@ -1,0 +1,30 @@
+.footer {
+  width: 100%;
+  background-color: indigo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding: 50px;
+  span {
+    margin-top: 20px;
+  }
+}
+
+.backToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(158, 40, 255);
+  &:hover {
+    background-color: midnightblue;
+    color: white;
+  }
+}

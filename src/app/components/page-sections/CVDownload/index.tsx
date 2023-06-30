@@ -3,7 +3,7 @@ import styles from "./CVDownload.module.scss";
 
 const CVDownload = () => {
   return (
-    <section>
+    <section id="CVDownload">
       <div>
         <h1>Download my CV</h1>
         <h2>

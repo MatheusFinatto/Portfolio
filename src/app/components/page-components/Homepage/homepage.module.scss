@@ -10,7 +10,6 @@ $breakpoints: (
   display: flex;
   flex-direction: column;
   padding: $main-padding;
-
   @each $breakpoint, $padding in $breakpoints {
     @media screen and #{$breakpoint} {
       padding: 0 $padding;
@@ -41,13 +40,12 @@ $breakpoints: (
   }
 }
 
-.profileImage {
-  border-radius: 50%;
-}
-
 .profileImageContainer {
   display: flex;
   align-items: center;
+  .profileImage {
+    border-radius: 50%;
+  }
 }
 
 .profileInfo {

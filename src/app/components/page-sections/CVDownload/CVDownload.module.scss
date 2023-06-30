@@ -1,0 +1,8 @@
+@use "/src/app/variables.scss";
+
+.buttonsContainer {
+  margin: auto;
+  > a button {
+    margin: 0 10px;
+  }
+}
