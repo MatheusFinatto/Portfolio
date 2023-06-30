@@ -23,7 +23,9 @@ const Homepage = () => {
           </div>
           <div className={styles.headingText}>
             <h1>I'm Matheus Finatto. </h1>
-            <TypeWritter />
+            <span style={{ lineHeight: "20px" }}>
+              <TypeWritter />
+            </span>
           </div>
         </div>
         <div className={styles.profileInfo}>

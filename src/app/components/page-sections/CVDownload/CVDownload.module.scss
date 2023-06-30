@@ -3,6 +3,10 @@
 .buttonsContainer {
   margin: auto;
   > a button {
+    width: 170px;
     margin: 0 10px;
+    @media screen and (max-width: 500px) {
+      margin: 10px 5px;
+    }
   }
 }

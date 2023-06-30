@@ -7,10 +7,6 @@ const Nav = () => {
   const scrollToSection = (event: any, sectionId: any) => {
     event.preventDefault();
     const section = document.getElementById(sectionId);
-    console.log(
-      "🚀 ~ file: index.tsx:10 ~ scrollToSection ~ section:",
-      section
-    );
     section!.scrollIntoView({ behavior: "smooth" });
   };
 

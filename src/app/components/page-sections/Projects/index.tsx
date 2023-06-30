@@ -22,8 +22,8 @@ const Projects = () => {
   const fetchRepos = async () => {
     try {
       const response = await fetch(
-        // `https://api.github.com/users/MatheusFinatto/starred`
-        ""
+        `https://api.github.com/users/MatheusFinatto/starred`
+        // ""
       );
 
       const fetchedRepos: RepoType[] = await response.json();

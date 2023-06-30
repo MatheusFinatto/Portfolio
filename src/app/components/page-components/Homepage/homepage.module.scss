@@ -55,7 +55,7 @@ $breakpoints: (
   height: 180px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .main {
     align-items: center;
   }
@@ -66,5 +66,34 @@ $breakpoints: (
   }
   .profileInfo {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .splitScreen {
+    // gap: 0;
+    margin-top: 20px;
+    .heading {
+      gap: 0;
+
+      flex-direction: column;
+      > .headingText {
+        text-align: start;
+        width: 100%;
+        max-width: 308.06px;
+        margin: 0;
+      }
+      .profileImageContainer {
+        align-items: baseline;
+        justify-content: center;
+        margin: 0;
+        .profileImage {
+          border-radius: 50%;
+        }
+      }
+    }
+    .profileInfo {
+      margin: 0;
+    }
   }
 }
