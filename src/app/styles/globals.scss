@@ -1,4 +1,4 @@
-@use "src/app/variables";
+@use "./variables.scss";
 
 * {
   margin: 0;
@@ -11,7 +11,7 @@ html body {
   height: 100%;
   max-width: 100vw;
   color: white;
-  background: variables.$main-background-color;
+  background-color: variables.$main-background-color;
 }
 
 .container {

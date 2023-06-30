@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <span>© Matheus Finatto 2023</span>
-      <span>Contact me</span>
+      <span>Contact me on my social media!</span>
       <Contact size={35} />
 
       {showButton && (

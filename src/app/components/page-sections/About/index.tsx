@@ -7,6 +7,7 @@ const About = () => {
     <section id="about">
       <div>
         <h1>About me</h1>
+        <Contact />
         <p className={styles.about}>
           <span>
             Hey there! 👋 I&apos;m Matheus Finatto, a web developer with a
@@ -38,16 +39,7 @@ const About = () => {
           <br />
           <span>Stay awesome and keep coding! 💪</span>
         </p>
-
-        <br />
-        <br />
-        <br />
-        <h2>
-          Click on one of the icons below to access my social media and
-          let&apos;s chat :)
-        </h2>
       </div>
-      <Contact />
     </section>
   );
 };

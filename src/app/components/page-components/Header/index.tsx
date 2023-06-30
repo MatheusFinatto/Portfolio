@@ -5,7 +5,7 @@ import Nav from "../Nav";
 
 const Navbar = () => {
   return (
-    <header className={styles.navbar}>
+    <header className={styles.header}>
       <div>
         <h1>Hi, my name is Matheus :)</h1>
         <h2>And this is my portfolio's showcase</h2>

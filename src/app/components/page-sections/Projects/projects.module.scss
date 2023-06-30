@@ -1,34 +1,42 @@
-@use "src/app/variables";
+@use "/src/app/styles/variables.scss";
 
 .repoList {
-  display: flex;
-  flex-wrap: wrap;
   list-style: none;
-  justify-content: space-between;
   padding: 0;
-  li {
-    width: 49%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  > li {
+    margin: 40px auto;
+    width: 70%;
+    padding: 30px;
     text-align: center;
     border: 1px solid white;
-    padding: 15px;
     box-shadow: 0px 1px 4px 1px rgba(255, 255, 255, 0.26);
     border-radius: 10px;
-    margin: 10px 0;
 
     a {
       color: white;
       font-size: 1.4rem;
+      text-decoration-color: indigo;
+    }
+    p {
+      margin: 1.5rem 0;
+    }
+    .description {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: whitesmoke;
+      height: 150px;
     }
   }
 }
 
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1000px) {
   .repoList {
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
     > li {
-      width: 90%;
+      width: 100%;
     }
   }
 }
@@ -39,12 +47,11 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
-
-.description {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: whitesmoke;
-  height: 100px;
+  margin: 0;
+  a button {
+    width: 190px;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 }

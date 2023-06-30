@@ -1,11 +1,13 @@
+@use "./variables.scss";
+
 section {
   div {
-    margin-bottom: 30px;
     text-align: center;
     margin-bottom: 30px;
     h1 {
       margin: 50px 0 30px 0;
       font-size: 2rem;
+      text-decoration: underline variables.$line-decoration-color;
     }
     h2 {
       font-size: 1rem;

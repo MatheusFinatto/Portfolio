@@ -23,7 +23,7 @@ const Nav = () => {
             href="#CVDownload"
             onClick={(event) => scrollToSection(event, "CVDownload")}
           >
-            My CV
+            Experience
           </a>
         </li>
         <li>

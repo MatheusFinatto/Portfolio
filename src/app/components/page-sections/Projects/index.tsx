@@ -21,16 +21,27 @@ const Projects = () => {
 
   const fetchRepos = async () => {
     try {
-      const response = await fetch(
-        `https://api.github.com/users/MatheusFinatto/starred`
-        // ""
-      );
+      const cachedRepos = localStorage.getItem("cachedRepos");
 
-      const fetchedRepos: RepoType[] = await response.json();
-      if (fetchedRepos.length) {
-        fetchedRepos.sort((a, b) => b.created_at.localeCompare(a.created_at));
+      if (cachedRepos) {
+        const parsedRepos = JSON.parse(cachedRepos);
+        setRepos(parsedRepos);
+        setLoading(false);
+        return;
+      } else {
+        console.log("fetching repos...");
+        const response = await fetch(
+          `https://api.github.com/users/MatheusFinatto/starred`
+        );
+        const fetchedRepos = await response.json();
+        if (fetchedRepos.length) {
+          fetchedRepos.sort((a: RepoType, b: RepoType) =>
+            b.created_at.localeCompare(a.created_at)
+          );
+        }
+        setRepos(fetchedRepos);
+        localStorage.setItem("cachedRepos", JSON.stringify(fetchedRepos));
       }
-      setRepos(fetchedRepos);
     } catch (err) {
       console.error(err);
     } finally {
@@ -75,11 +86,7 @@ const Projects = () => {
           return (
             <li key={id}>
               <h3>
-                <a
-                  href={html_url}
-                  target="_blank"
-                  style={{ textDecoration: "none" }}
-                >
+                <a href={html_url} target="_blank">
                   {name}
                 </a>
               </h3>

@@ -1,4 +1,4 @@
-.navbar {
+.header {
   text-align: center;
   background-color: indigo;
   padding-top: 120px;
@@ -10,11 +10,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: indigo;
     h1 {
       font-weight: 700;
       font-size: 2.5rem;
       margin-bottom: 12px;
-      color: linear contrast;
     }
     h2 {
       font-weight: 500;

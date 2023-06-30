@@ -1,8 +1,10 @@
+@use "src/app/styles/variables";
+
 $main-padding: 0 20%;
 $breakpoints: (
   "(max-width: 1400px)": 15%,
   "(max-width: 1200px)": 10%,
-  "(max-width: 1050px)": 5%,
+  "(max-width: 1000px)": 5%,
 );
 
 .main {
@@ -26,11 +28,14 @@ $breakpoints: (
   h1 {
     text-align: start;
     margin-top: 30px;
-    color: rgb(184, 40, 40);
+    color: variables.$line-decoration-color;
+    text-decoration: none;
   }
   > .heading {
     display: flex;
     gap: 30px;
+    margin: 0;
+
     > .headingText {
       text-align: start;
       margin-top: 30px;
@@ -94,6 +99,7 @@ $breakpoints: (
     }
     .profileInfo {
       margin: 0;
+      margin-bottom: 50px;
     }
   }
 }
