@@ -98,9 +98,20 @@ const Projects = () => {
                 <a href={html_url} target="_blank">
                   <button>See on GitHub</button>
                 </a>
-                {homepage && (
-                  <a href={homepage} target="_blank">
+                {name !== "portfolio" ? (
+                  <a href={homepage!} target="_blank">
                     <button>See the deployed app</button>
+                  </a>
+                ) : (
+                  <a>
+                    <button
+                      className={styles.disabled}
+                      onClick={() =>
+                        alert("You already are on my portfolio ;)")
+                      }
+                    >
+                      See the deployed app
+                    </button>
                   </a>
                 )}
               </div>

@@ -54,4 +54,8 @@
   @media (max-width: 500px) {
     flex-direction: column;
   }
+  .disabled {
+    cursor: not-allowed;
+    background-color: variables.$button-disabled-color;
+  }
 }
