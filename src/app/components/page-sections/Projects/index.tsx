@@ -69,6 +69,46 @@ const Projects = () => {
     );
   }
 
+  const deployedAppButtonConditionalRender = (
+    name: string,
+    homepage: string | null
+  ) => {
+    if (name !== "portfolio") {
+      if (homepage) {
+        return (
+          <a href={homepage!} target="_blank">
+            <button>See the deployed app</button>
+          </a>
+        );
+      }
+      // else {
+      //   return (
+      //     <a>
+      //       <button
+      //         className={styles.disabled}
+      //         onClick={() =>
+      //           alert("This project doesn't have a deployed app yet :(")
+      //         }
+      //       >
+      //         See the deployed app
+      //       </button>
+      //     </a>
+      //   );
+      // }
+    } else {
+      return (
+        <a>
+          <button
+            className={styles.disabled}
+            onClick={() => alert("You already are on my portfolio ;)")}
+          >
+            See the deployed app
+          </button>
+        </a>
+      );
+    }
+  };
+
   return (
     <section id="projects" className={styles.projects}>
       <div>
@@ -98,7 +138,8 @@ const Projects = () => {
                 <a href={html_url} target="_blank">
                   <button>See on GitHub</button>
                 </a>
-                {name !== "portfolio" ? (
+                {deployedAppButtonConditionalRender(name, homepage)}
+                {/* {name !== "portfolio" ? (
                   <a href={homepage!} target="_blank">
                     <button>See the deployed app</button>
                   </a>
@@ -113,7 +154,7 @@ const Projects = () => {
                       See the deployed app
                     </button>
                   </a>
-                )}
+                )} */}
               </div>
             </li>
           );

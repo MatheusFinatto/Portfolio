@@ -80,8 +80,9 @@ const Curriculum = () => {
         <div>
           <h1>Download my CV</h1>
           <h2>
-            If you are interested, you can take a look on my CV in english or
-            Brazilian portuguese :D
+            If you are interested in seeing more detail about my experiences and
+            education (such as non-dev exp or courses), you can take a look on
+            my CV in english or Brazilian portuguese :D
           </h2>
         </div>
         <CVDownload />
