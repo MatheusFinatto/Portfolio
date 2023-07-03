@@ -15,7 +15,7 @@ const Homepage = () => {
           <div className={styles.profileImageContainer}>
             <Image
               className={styles.profileImage}
-              src="/images/profile.jpg"
+              src="/images/Ma.png"
               alt="Picture of Matheus Finatto"
               width={100}
               height={100}

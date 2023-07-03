@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./projects.module.scss";
 import { config } from "dotenv";
+import Image from "next/image";
 config();
 
 type RepoType = {
@@ -21,27 +22,17 @@ const Projects = () => {
 
   const fetchRepos = async () => {
     try {
-      const cachedRepos = localStorage.getItem("cachedRepos");
-
-      if (cachedRepos) {
-        const parsedRepos = JSON.parse(cachedRepos);
-        setRepos(parsedRepos);
-        setLoading(false);
-        return;
-      } else {
-        console.log("fetching repos...");
-        const response = await fetch(
-          `https://api.github.com/users/MatheusFinatto/starred`
+      console.log("fetching repos...");
+      const response = await fetch(
+        `https://api.github.com/users/MatheusFinatto/starred`
+      );
+      const fetchedRepos = await response.json();
+      if (fetchedRepos.length) {
+        fetchedRepos.sort((a: RepoType, b: RepoType) =>
+          b.created_at.localeCompare(a.created_at)
         );
-        const fetchedRepos = await response.json();
-        if (fetchedRepos.length) {
-          fetchedRepos.sort((a: RepoType, b: RepoType) =>
-            b.created_at.localeCompare(a.created_at)
-          );
-        }
-        setRepos(fetchedRepos);
-        localStorage.setItem("cachedRepos", JSON.stringify(fetchedRepos));
       }
+      setRepos(fetchedRepos);
     } catch (err) {
       console.error(err);
     } finally {
@@ -130,6 +121,12 @@ const Projects = () => {
                   {name}
                 </a>
               </h3>
+              <Image
+                src="/images/profile.jpg"
+                alt="Picture of Matheus Finatto"
+                width={100}
+                height={100}
+              />
               <p className={styles.description}>{description}</p>
               <p>
                 Created at {new Date(created_at).toLocaleDateString("pt-BR")}
