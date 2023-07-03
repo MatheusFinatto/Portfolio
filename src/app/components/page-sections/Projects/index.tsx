@@ -44,22 +44,6 @@ const Projects = () => {
     fetchRepos();
   }, []);
 
-  if (loading) {
-    return (
-      <section id="projects" className={styles.projects}>
-        <div>
-          <h1>Projects</h1>
-          <h2>
-            Here are displayed my GitHub projects. Some of them are deployed on
-            hosting sites, and can be accessed through the button &#34;See the
-            deployed app&#34;.
-          </h2>
-          <p>Loading...</p>
-        </div>
-      </section>
-    );
-  }
-
   const deployedAppButtonConditionalRender = (
     name: string,
     homepage: string | null
@@ -72,20 +56,6 @@ const Projects = () => {
           </a>
         );
       }
-      // else {
-      //   return (
-      //     <a>
-      //       <button
-      //         className={styles.disabled}
-      //         onClick={() =>
-      //           alert("This project doesn't have a deployed app yet :(")
-      //         }
-      //       >
-      //         See the deployed app
-      //       </button>
-      //     </a>
-      //   );
-      // }
     } else {
       return (
         <a>
@@ -100,12 +70,28 @@ const Projects = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <section id="projects" className={styles.projects}>
+        <div>
+          <h1>Projects</h1>
+          <h2>
+            Here are displayed my GitHub projects. Most of them are deployed on
+            hosting sites, and can be accessed through the button &#34;See the
+            deployed app&#34;.
+          </h2>
+          <p>Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className={styles.projects}>
       <div>
         <h1>Projects</h1>
         <h2>
-          Here are displayed my GitHub projects. Some of them are deployed on
+          Here are displayed my GitHub projects. Most of them are deployed on
           hosting sites, and can be accessed through the button &#34;See the
           deployed app&#34;.
         </h2>
@@ -114,6 +100,8 @@ const Projects = () => {
         {repos.map((repo: RepoType) => {
           const { id, name, homepage, description, html_url, created_at } =
             repo;
+          const imageUrl = `https://raw.githubusercontent.com/MatheusFinatto/${name}/main/public/images/Screenshot.png`;
+
           return (
             <li key={id}>
               <h3>
@@ -122,10 +110,12 @@ const Projects = () => {
                 </a>
               </h3>
               <Image
-                src="/images/profile.jpg"
-                alt="Picture of Matheus Finatto"
-                width={100}
-                height={100}
+                src={imageUrl}
+                alt="Repo screenshot"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto" }}
               />
               <p className={styles.description}>{description}</p>
               <p>
