@@ -61,7 +61,9 @@ const Curriculum = () => {
               Universidade Regional Integrada do Alto Uruguai e das Missões -
               URI
             </h3>
-            <p className={styles.degree}>Bacharelado, Ciência da Computação</p>
+            <p className={styles.degree}>
+              Bachelor&apos;s degree, Computer Science
+            </p>
             <p className={styles.educationDuration}>
               February 2021 - December 2024
             </p>
@@ -69,7 +71,9 @@ const Curriculum = () => {
 
           <div className={styles.education}>
             <h3>Universidade Federal de Santa Maria</h3>
-            <p className={styles.degree}>Bacharelado, Administração</p>
+            <p className={styles.degree}>
+              Bachelor&apos;s degree, Business Administration
+            </p>
             <p className={styles.educationDuration}>2016 - 2020</p>
           </div>
 
@@ -81,8 +85,8 @@ const Curriculum = () => {
           <h1>Download my CV</h1>
           <h2>
             If you are interested in seeing more detail about my experiences and
-            education (such as non-dev exp or courses), you can take a look on
-            my CV in english or Brazilian portuguese :D
+            education (such as non-dev exp or minor courses taken), you can take
+            a look on my CV in english or Brazilian portuguese :D
           </h2>
         </div>
         <CVDownload />

@@ -22,11 +22,27 @@ const Projects = () => {
 
   const fetchRepos = async () => {
     try {
-      console.log("fetching repos...");
       const response = await fetch(
-        `https://api.github.com/users/MatheusFinatto/starred`
+        `https://api.github.com/users/MatheusFinatto/starred`,
+        {
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          },
+        }
       );
+      // console.log(
+      //   "🚀 ~ file: index.tsx:32 ~ fetchRepos ~ process.env.GITHUB_TOKEN:",
+      //   process.env.GITHUB_TOKEN
+      // );
+
+      const rateLimitLimit = response.headers.get("X-RateLimit-Limit");
+      console.log("Rate Limit Limit:", rateLimitLimit);
+      const rateRemainingLimit = response.headers.get("X-RateLimit-Remaining");
+      console.log("Rate Remaining Limit:", rateRemainingLimit);
+
       const fetchedRepos = await response.json();
+
       if (fetchedRepos.length) {
         fetchedRepos.sort((a: RepoType, b: RepoType) =>
           b.created_at.localeCompare(a.created_at)
@@ -43,6 +59,7 @@ const Projects = () => {
   useEffect(() => {
     fetchRepos();
   }, []);
+  console.log("🚀 ~ file: index.tsx:149 ~ {repos.map ~ repos:", repos);
 
   const deployedAppButtonConditionalRender = (
     name: string,
@@ -116,6 +133,7 @@ const Projects = () => {
                 height={0}
                 sizes="100vw"
                 style={{ width: "100%", height: "auto" }}
+                priority={false}
               />
               <p className={styles.description}>{description}</p>
               <p>
@@ -126,22 +144,6 @@ const Projects = () => {
                   <button>See on GitHub</button>
                 </a>
                 {deployedAppButtonConditionalRender(name, homepage)}
-                {/* {name !== "portfolio" ? (
-                  <a href={homepage!} target="_blank">
-                    <button>See the deployed app</button>
-                  </a>
-                ) : (
-                  <a>
-                    <button
-                      className={styles.disabled}
-                      onClick={() =>
-                        alert("You already are on my portfolio ;)")
-                      }
-                    >
-                      See the deployed app
-                    </button>
-                  </a>
-                )} */}
               </div>
             </li>
           );

@@ -20,10 +20,15 @@ const About = () => {
           <br />
           <br />
           When it comes to tech, I&apos;ve got some serious skills! I excel at
-          React, TypeScript, JavaScript, HTML5, CSS3, Apollo GraphQL, Node.js,
-          and Express.js. Currently, I&apos;m putting my web development
-          expertise to work at Wonder Sistemas, where I&apos;m all about that
-          front-end magic with React.
+          React, TypeScript, JavaScript, HTML5, CSS3, GraphQL, Rest APIs,
+          Node.js, and Express.js. I also have had contact with many more, such
+          as C++, Java, PHP (Laravel), C# (.NET Framework), and Python (Flask),
+          just to cite some.
+          <br />
+          <br />
+          Currently, I&apos;m putting my web development expertise to work at
+          Wonder Sistemas, where I&apos;m all about that front-end magic with
+          React.
           <br />
           <br />
           But that&apos;s not all! I&apos;m not just into front-end development

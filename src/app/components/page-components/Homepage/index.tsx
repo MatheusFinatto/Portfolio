@@ -31,8 +31,8 @@ const Homepage = () => {
         <div className={styles.profileInfo}>
           <h1>What is this site for?</h1>
           <p>
-            Here, you will be able to see my portfolio, some things about me and
-            download my CV.
+            Here, you will be able to see some info about me, download my CV and
+            see some of my best projects.
           </p>
           <br />
           <p>Hope you like it :)</p>
