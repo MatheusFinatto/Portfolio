@@ -6,6 +6,9 @@ import { config } from "dotenv";
 import Image from "next/image";
 config();
 
+process.env.GITHUB_TOKEN === undefined &&
+  console.warn("Access token not found");
+
 type RepoType = {
   id: number;
   name: string;
@@ -31,10 +34,6 @@ const Projects = () => {
           },
         }
       );
-      // console.log(
-      //   "🚀 ~ file: index.tsx:32 ~ fetchRepos ~ process.env.GITHUB_TOKEN:",
-      //   process.env.GITHUB_TOKEN
-      // );
 
       const rateLimitLimit = response.headers.get("X-RateLimit-Limit");
       console.log("Rate Limit Limit:", rateLimitLimit);
@@ -59,7 +58,6 @@ const Projects = () => {
   useEffect(() => {
     fetchRepos();
   }, []);
-  console.log("🚀 ~ file: index.tsx:149 ~ {repos.map ~ repos:", repos);
 
   const deployedAppButtonConditionalRender = (
     name: string,
