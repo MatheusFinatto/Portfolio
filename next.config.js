@@ -8,5 +8,5 @@ module.exports = {
     config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
     return config;
   },
-  env: { GITHUB_TOKEN: process.env.GITHUB_TOKEN },
+  env: { NEXT_PUBLIC_GITHUB_TOKEN: process.env.NEXT_PUBLIC_GITHUB_TOKEN },
 };

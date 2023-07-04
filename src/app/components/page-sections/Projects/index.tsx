@@ -6,7 +6,7 @@ import { config } from "dotenv";
 import Image from "next/image";
 config();
 
-process.env.GITHUB_TOKEN === undefined &&
+process.env.NEXT_PUBLIC_GITHUB_TOKEN === undefined &&
   console.warn("Access token not found");
 
 type RepoType = {
@@ -30,7 +30,7 @@ const Projects = () => {
         {
           headers: {
             Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
           },
         }
       );
