@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./projects.module.scss";
-import { config } from "dotenv";
 import Image from "next/image";
-config();
+require("dotenv").config();
 
 process.env.NEXT_PUBLIC_GITHUB_TOKEN === undefined &&
   console.warn("Access token not found");
@@ -63,7 +62,7 @@ const Projects = () => {
     name: string,
     homepage: string | null
   ) => {
-    if (name !== "portfolio") {
+    if (name !== "Portfolio") {
       if (homepage) {
         return (
           <a href={homepage!} target="_blank">
