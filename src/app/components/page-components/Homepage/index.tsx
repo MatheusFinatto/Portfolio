@@ -15,9 +15,9 @@ const Homepage = () => {
           <div className={styles.profileImageContainer}>
             <Image
               className={styles.profileImage}
-              src="/images/Ma.png"
+              src="/images/Matheus Finatto.jpeg"
               alt="Picture of Matheus Finatto"
-              width={100}
+              width={105}
               height={100}
             />
           </div>

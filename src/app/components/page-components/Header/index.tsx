@@ -8,7 +8,7 @@ const Navbar = () => {
     <header className={styles.header}>
       <div>
         <h1>Hi, my name is Matheus :)</h1>
-        <h2>And this is my portfolio's showcase</h2>
+        <h2>And this is my portfolio showcase</h2>
         <Nav />
       </div>
 
