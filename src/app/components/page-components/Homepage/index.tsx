@@ -42,6 +42,12 @@ const Homepage = () => {
       <About />
       <Curriculum />
       <Portfolio />
+      <p>Number of visitors</p>
+      <br />
+      <img
+        src="https://megacontador.com.br/img-9vl3DBv8nmkk2ERL-29.gif"
+        alt="Contador de visitas"
+      />
     </main>
   );
 };

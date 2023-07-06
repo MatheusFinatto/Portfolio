@@ -30,6 +30,7 @@ $breakpoints: (
     margin-top: 30px;
     color: variables.$line-decoration-color;
     text-decoration: none;
+    font-family: montserrat;
   }
   > .heading {
     display: flex;
@@ -85,8 +86,13 @@ $breakpoints: (
       > .headingText {
         text-align: start;
         width: 100%;
-        max-width: 308.06px;
         margin: 0;
+        h1 {
+          font-size: 2rem;
+        }
+        span {
+          max-width: 290px;
+        }
       }
       .profileImageContainer {
         align-items: baseline;
