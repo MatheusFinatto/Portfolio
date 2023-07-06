@@ -44,9 +44,12 @@ const Homepage = () => {
       <Portfolio />
       <p>Number of visitors</p>
       <br />
-      <img
-        src="https://megacontador.com.br/img-9vl3DBv8nmkk2ERL-29.gif"
-        alt="Contador de visitas"
+      <Image
+        src="https://counter3.optistats.ovh/private/webcontadores.php?c=c159jsr4s2frerm51thh4f8lh91jpxhs"
+        title="contador de visitas"
+        alt="contador de visitas"
+        width={108}
+        height={27}
       />
     </main>
   );

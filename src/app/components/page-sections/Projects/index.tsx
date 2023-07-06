@@ -66,7 +66,9 @@ const Projects = () => {
       if (homepage) {
         return (
           <a href={homepage!} target="_blank">
-            <button>See the deployed app</button>
+            <button className={styles.deployedAppButton}>
+              See the deployed app
+            </button>
           </a>
         );
       }

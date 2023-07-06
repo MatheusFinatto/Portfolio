@@ -7,9 +7,9 @@
   flex-direction: column;
   align-items: center;
   > li {
-    margin: 40px auto;
+    padding: 3%;
 
-    padding: 30px;
+    margin: 40px auto;
     text-align: center;
     border: 1px solid white;
     box-shadow: 0px 1px 4px 1px rgba(255, 255, 255, 0.26);
@@ -57,11 +57,19 @@
   a button {
     width: 190px;
   }
+
   @media (max-width: 500px) {
     flex-direction: column;
   }
   .disabled {
     cursor: not-allowed;
     background-color: variables.$button-disabled-color;
+  }
+}
+
+.deployedAppButton {
+  background-color: indigo;
+  &:hover {
+    background-color: rgb(30, 0, 50);
   }
 }
