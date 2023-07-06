@@ -1,10 +1,10 @@
 import "./styles/globals.scss";
 import "./styles/button.scss";
 import "./styles/section.scss";
-import { Inter } from "next/font/google";
-import Head from "next/head";
+import { Inter, Montserrat, Poppins } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Matheus' Portfolio",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={montserrat.className}>{children}</body>
     </html>
   );
 }
