@@ -50,7 +50,7 @@ const Contact = ({ size = 50 }: { size?: number }) => {
         <FaWhatsapp />
       </a>
       <a onClick={copyToClipboard} style={{ width: size, height: size }}>
-        <FaEnvelope />
+        <FaEnvelope style={{ width: size - 20, height: size - 20 }} />
       </a>
     </div>
   );
