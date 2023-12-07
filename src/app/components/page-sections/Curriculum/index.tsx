@@ -3,6 +3,14 @@ import CVDownload from "./CVDownload";
 import styles from "./curriculum.module.scss";
 
 const Curriculum = () => {
+  const calculatedMonths = () => {
+    const now = new Date();
+    const start = new Date(2022, 9, 1);
+    const diff = now.getTime() - start.getTime();
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+    return months;
+  };
+
   return (
     <>
       <section id="CVDownload">
@@ -22,7 +30,7 @@ const Curriculum = () => {
             <h3>Wonder Sistemas</h3>
             <p className={styles.jobTitle}>Software Developer</p>
             <p className={styles.jobDuration}>
-              October 2022 - Present (10 months)
+              October 2022 - Present ({calculatedMonths()} months)
             </p>
             <p className={styles.jobLocation}>
               Erechim, Rio Grande do Sul, Brazil
