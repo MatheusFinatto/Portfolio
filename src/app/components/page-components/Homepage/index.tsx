@@ -42,6 +42,8 @@ const Homepage = () => {
       <About />
       <Curriculum />
       <Portfolio />
+      <br />
+      <br />
       <p>Number of visitors</p>
       <br />
       <Image

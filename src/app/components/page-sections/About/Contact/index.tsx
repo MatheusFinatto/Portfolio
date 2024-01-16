@@ -6,7 +6,6 @@ import {
   FaLinkedin,
   FaInstagram,
   FaWhatsapp,
-  FaMailBulk,
   FaEnvelope,
 } from "react-icons/fa";
 import styles from "./contact.module.scss";
