@@ -42,17 +42,6 @@ const Homepage = () => {
       <About />
       <Curriculum />
       <Portfolio />
-      <br />
-      <br />
-      <p>Number of visitors</p>
-      <br />
-      <Image
-        src="https://counter3.optistats.ovh/private/webcontadores.php?c=c159jsr4s2frerm51thh4f8lh91jpxhs"
-        title="contador de visitas"
-        alt="contador de visitas"
-        width={108}
-        height={27}
-      />
     </main>
   );
 };

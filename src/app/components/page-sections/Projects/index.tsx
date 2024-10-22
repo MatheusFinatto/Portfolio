@@ -3,10 +3,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./projects.module.scss";
 import Image from "next/image";
-require("dotenv").config();
 
-process.env.NEXT_PUBLIC_GITHUB_TOKEN === undefined &&
+if (
+  process.env.NODE_ENV === "development" &&
+  !process.env.NEXT_PUBLIC_GITHUB_TOKEN
+) {
   console.warn("Access token not found");
+}
 
 type RepoType = {
   id: number;
@@ -23,32 +26,34 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchRepos = async () => {
+    const headers = {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+    };
+
     try {
       const response = await fetch(
         `https://api.github.com/users/MatheusFinatto/starred`,
-        {
-          headers: {
-            Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-          },
-        }
+        { headers }
       );
 
-      const rateLimitLimit = response.headers.get("X-RateLimit-Limit");
-      console.log("Rate Limit Limit:", rateLimitLimit);
-      const rateRemainingLimit = response.headers.get("X-RateLimit-Remaining");
-      console.log("Rate Remaining Limit:", rateRemainingLimit);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
 
       const fetchedRepos = await response.json();
 
-      if (fetchedRepos.length) {
-        fetchedRepos.sort((a: RepoType, b: RepoType) =>
+      if (Array.isArray(fetchedRepos) && fetchedRepos.length > 0) {
+        const sortedRepos = fetchedRepos.sort((a: RepoType, b: RepoType) =>
           b.created_at.localeCompare(a.created_at)
         );
+        setRepos(sortedRepos);
+      } else {
+        throw new Error("No repositories found or fetched data is invalid.");
       }
-      setRepos(fetchedRepos);
     } catch (err) {
-      console.error(err);
+      console.error("Failed to fetch repositories:", err);
+      setRepos([]);
     } finally {
       setLoading(false);
     }
@@ -113,7 +118,7 @@ const Projects = () => {
         </h2>
       </div>
       <ul className={styles.repoList}>
-        {repos.map((repo: RepoType) => {
+        {repos?.map((repo: RepoType) => {
           const { id, name, homepage, description, html_url, created_at } =
             repo;
           const imageUrl = `https://raw.githubusercontent.com/MatheusFinatto/${name}/main/public/images/Screenshot.png`;
@@ -152,7 +157,7 @@ const Projects = () => {
         <div>
           <span>
             Error loading repos. This is probably due to GitHub&apos;s API rate
-            limit
+            limit.
             <br />
             <br />
             Access{" "}
@@ -161,15 +166,6 @@ const Projects = () => {
             </a>{" "}
             to see them
           </span>
-          <br />
-          <br />
-          <p>And please report this error to me if you see it :)</p>
-          <br />
-          <a>
-            <button onClick={() => alert("Thank you for reporting")}>
-              Report error
-            </button>
-          </a>
         </div>
       )}
     </section>
