@@ -9,9 +9,9 @@ const About = () => {
         <h1>About me</h1>
         <Contact />
         <p className={styles.about}>
-          <span>Hello, I'm Matheus Finatto, a web developer.</span>
+          <span>Hello, I&apos;m Matheus Finatto, a web developer.</span>
           <br />
-          I have Bachelor's degrees in both Computer Science and Business
+          I have Bachelor&apos;s degrees in both Computer Science and Business
           Administration.
           <br />
           <br />
