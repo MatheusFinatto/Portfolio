@@ -20,7 +20,7 @@ const Curriculum = () => (
         <div className={styles.job}>
           <h3>Wonder Sistemas</h3>
           <p className={styles.jobTitle}>Software Developer</p>
-          <p className={styles.jobDuration}>October 2022 - Present</p>
+          <p className={styles.jobDuration}>Oct. 2022 - Present</p>
           <p className={styles.jobLocation}>
             Erechim, Rio Grande do Sul, Brazil
           </p>
@@ -34,7 +34,7 @@ const Curriculum = () => (
         <div className={styles.job}>
           <h3>Compass.uol</h3>
           <p className={styles.jobTitle}>Chatbot Take Intern</p>
-          <p className={styles.jobDuration}>December 2021 - March 2022</p>
+          <p className={styles.jobDuration}>Dec. 2021 - Mar. 2022</p>
           <p className={styles.jobLocation}>
             Erechim, Rio Grande do Sul, Brazil
           </p>
@@ -58,9 +58,15 @@ const Curriculum = () => (
           <p className={styles.degree}>
             Bachelor&apos;s degree, Computer Science
           </p>
-          <p className={styles.educationDuration}>
-            February 2021 - December 2024
+          <p className={styles.educationDuration}>Feb. 2021 - Dec. 2024</p>
+        </div>
+
+        <div className={styles.education}>
+          <h3>HarvardX - EdX, Online</h3>
+          <p className={styles.degree}>
+            CS50x: Introduction to Computer Science
           </p>
+          <p className={styles.educationDuration}>Jan. 2021 - Dec. 2024</p>
         </div>
 
         <div className={styles.education}>
@@ -68,7 +74,7 @@ const Curriculum = () => (
           <p className={styles.degree}>
             Bachelor&apos;s degree, Business Administration
           </p>
-          <p className={styles.educationDuration}>2016 - 2020</p>
+          <p className={styles.educationDuration}>Feb. 2016 - Dec. 2020</p>
         </div>
 
         {/* Add more education sections as needed */}
