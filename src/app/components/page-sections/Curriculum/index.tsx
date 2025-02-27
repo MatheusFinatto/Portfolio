@@ -76,8 +76,6 @@ const Curriculum = () => (
           </p>
           <p className={styles.educationDuration}>Feb. 2016 - Dec. 2020</p>
         </div>
-
-        {/* Add more education sections as needed */}
       </div>
     </section>
     <section>
