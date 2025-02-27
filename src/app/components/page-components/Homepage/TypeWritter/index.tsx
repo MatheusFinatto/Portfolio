@@ -6,7 +6,7 @@ const TypeWritter = () => {
     <TypeAnimation
       sequence={[
         "I am a web developer 💻;",
-        3000,
+        2000,
         "And I am a Bachelor in Computer Science 🎓;",
         1400,
         "And also I am a Bachelor in Business Administration 🏢;",
@@ -17,7 +17,7 @@ const TypeWritter = () => {
         1400,
       ]}
       wrapper="span"
-      speed={60}
+      speed={70}
       style={{ fontSize: "1rem", display: "inline-block" }}
       repeat={Infinity}
     />
