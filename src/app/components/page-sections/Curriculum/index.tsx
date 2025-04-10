@@ -20,7 +20,7 @@ const Curriculum = () => (
         <div className={styles.job}>
           <h3>Wonder Sistemas</h3>
           <p className={styles.jobTitle}>Software Developer</p>
-          <p className={styles.jobDuration}>Oct. 2022 - Present</p>
+          <p className={styles.jobDuration}>Jun. 2022 - Present</p>
           <p className={styles.jobLocation}>
             Erechim, Rio Grande do Sul, Brazil
           </p>
