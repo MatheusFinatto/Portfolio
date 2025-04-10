@@ -66,7 +66,7 @@ const Curriculum = () => (
           <p className={styles.degree}>
             CS50x: Introduction to Computer Science
           </p>
-          <p className={styles.educationDuration}>Jan. 2021 - Dec. 2024</p>
+          <p className={styles.educationDuration}>Jan. 2021 - Dec. 2021</p>
         </div>
 
         <div className={styles.education}>
