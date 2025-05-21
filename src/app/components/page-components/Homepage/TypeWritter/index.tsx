@@ -5,13 +5,13 @@ import styles from "./typewriter.module.scss";
 const TypeWritter = () => {
   // Breaking longer phrases into two lines for better presentation
   const sequence = [
-    "I am a web developer 💻",
+    "And I am a web developer 💻",
     1400,
-    "I hold a Bachelor's in\nComputer Science 🎓",
+    "And I hold a Bachelor's in\nComputer Science 🎓",
     1400,
-    "Also, I have a Bachelor's in\nBusiness Administration 🏢",
+    "And I hold a Bachelor's in\nBusiness Administration 🏢",
     1400,
-    "I am passionate about\nlearning new things 📚",
+    "And I am passionate about\nlearning new things 📚",
     1400,
   ];
 

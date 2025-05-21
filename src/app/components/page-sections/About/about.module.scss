@@ -2,29 +2,57 @@
 
 .about {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
   text-align: justify;
   padding: 2rem;
-  background: variables.$card-background;
+  background: rgba(31, 41, 55, 0.7); // Darker, more visible background
   border-radius: variables.$card-border-radius;
-  border: variables.$card-border;
+  border: 1px solid rgba(variables.$primary-color, 0.3);
   box-shadow: variables.$card-shadow;
   color: variables.$text-secondary-color;
   line-height: 1.7;
+  position: relative;
+  z-index: 1; // Ensure it's above any background elements
 
   span {
     color: variables.$text-color;
     font-weight: 500;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 640px) {
     padding: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
   }
 }
 
 .aboutSection {
+  margin-top: 4rem;
+  padding: 0 1rem;
+
   h1 {
     position: relative;
     display: inline-block;
+    margin-bottom: 2rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 3px;
+      background: variables.$primary-gradient;
+      border-radius: 3px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    margin-top: 2rem;
+    width: 100%;
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 }

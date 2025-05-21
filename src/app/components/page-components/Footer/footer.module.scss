@@ -2,14 +2,19 @@
 
 .footer {
   width: 100%;
-  background: variables.$header-gradient;
+  background: linear-gradient(
+    to right,
+    #111827,
+    variables.$primary-color,
+    #111827
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
-  padding: 3.5rem 1.5rem 3rem;
+  padding: 3rem 1.5rem 2rem;
   position: relative;
+  margin-top: 4rem;
 
   &::before {
     content: "";
@@ -24,21 +29,26 @@
   }
 
   span {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     color: variables.$text-secondary-color;
     position: relative;
     z-index: 1;
+    text-align: center;
 
     &:first-of-type {
       font-weight: 500;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: 2rem;
+  }
 }
 
 .backToTopBtn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  position: fixed; /* Ensure it doesn't affect layout flow */
+  bottom: 1.5rem;
+  right: 1.5rem;
   z-index: 99;
   width: 3rem;
   height: 3rem;
@@ -54,6 +64,20 @@
   justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: variables.$transition-standard;
+
+  /* Prevent any margin or padding that might affect layout */
+  margin: 0;
+  padding: 0;
+
+  /* Make button smaller on mobile */
+  @media screen and (max-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0.9; /* Slightly transparent on mobile */
+  }
 
   &:hover {
     background-color: variables.$button-hover-color;

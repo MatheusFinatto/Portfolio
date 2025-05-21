@@ -70,7 +70,10 @@
     box-shadow: 0 0 0 4px rgba(variables.$primary-color, 0.3);
 
     @media screen and (max-width: 768px) {
-      left: -2.5rem;
+      left: -3.4rem;
+    }
+    @media screen and (max-width: 500px) {
+      left: -2.9rem;
     }
   }
 

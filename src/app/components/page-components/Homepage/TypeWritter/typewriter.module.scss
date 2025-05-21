@@ -46,6 +46,16 @@
   animation: fadeIn 0.3s ease-in 1.5s forwards;
   z-index: 2;
   position: relative;
+
+  @media (max-width: 640px) {
+    font-size: 1rem;
+    min-height: 42px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    min-height: 40px;
+  }
 }
 
 @keyframes loadingDots {

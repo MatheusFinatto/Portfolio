@@ -5,6 +5,8 @@ $breakpoints: (
   "(max-width: 1400px)": 15%,
   "(max-width: 1200px)": 10%,
   "(max-width: 1000px)": 5%,
+  "(max-width: 768px)": 2rem,
+  "(max-width: 480px)": 1rem,
 );
 
 .main {
