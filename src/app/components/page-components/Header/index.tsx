@@ -18,11 +18,13 @@ const Header = () => {
             priority
           />
         </div>
-        <h1>Hi, my name is Matheus :)</h1>
+        <h1>
+          Hi, my name is Matheus Finatto <span className={styles.wave}>👋</span>
+        </h1>
         <div className={styles.typewriterWrapper}>
           <TypeWritter />
         </div>
-        <h2>And this is my portfolio showcase</h2>
+        <h2>And I've created this space to share my work with you! 😊</h2>
         <Nav />
       </div>
 

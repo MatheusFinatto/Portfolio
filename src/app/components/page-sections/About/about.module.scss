@@ -1,31 +1,5 @@
 @use "/src/app/styles/variables.scss";
 
-.about {
-  max-width: 800px;
-  margin: 3rem auto 0;
-  text-align: justify;
-  padding: 2rem;
-  background: rgba(31, 41, 55, 0.7); // Darker, more visible background
-  border-radius: variables.$card-border-radius;
-  border: 1px solid rgba(variables.$primary-color, 0.3);
-  box-shadow: variables.$card-shadow;
-  color: variables.$text-secondary-color;
-  line-height: 1.7;
-  position: relative;
-  z-index: 1; // Ensure it's above any background elements
-
-  span {
-    color: variables.$text-color;
-    font-weight: 500;
-  }
-
-  @media screen and (max-width: 640px) {
-    padding: 1.5rem;
-    margin-top: 2rem;
-    width: 100%;
-  }
-}
-
 .aboutSection {
   margin-top: 4rem;
   padding: 0 1rem;
@@ -54,5 +28,109 @@
     h1 {
       font-size: 2rem;
     }
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+// Bio Card
+.bioCard {
+  display: flex;
+  background: rgba(31, 41, 55, 0.7);
+  border-radius: variables.$card-border-radius;
+  border: 1px solid rgba(variables.$primary-color, 0.3);
+  box-shadow: variables.$card-shadow;
+  padding: 2rem;
+  gap: 2rem;
+  overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.profileImageContainer {
+  flex: 0 0 150px;
+  align-self: flex-start;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid variables.$primary-color;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(variables.$primary-color, 0.5);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.bioInfo {
+  flex: 1;
+}
+
+.jobTitle {
+  color: variables.$primary-color;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.bioText {
+  margin: 1rem 0;
+  line-height: 1.6;
+  color: variables.$text-secondary-color;
+}
+
+// Education Timeline
+.educationSection {
+  margin-top: 1.5rem;
+}
+
+.timelineContainer {
+  margin-top: 1rem;
+}
+
+.timelineItem {
+  display: flex;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.timelineIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(variables.$primary-color, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.timelineContent {
+  h4 {
+    margin: 0;
+    color: variables.$text-color;
+  }
+
+  .year {
+    font-size: 0.9rem;
+    color: variables.$text-secondary-color;
   }
 }

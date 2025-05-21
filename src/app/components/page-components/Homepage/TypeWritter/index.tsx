@@ -11,8 +11,6 @@ const TypeWritter = () => {
     1400,
     "And I hold a Bachelor's in\nBusiness Administration 🏢",
     1400,
-    "And I am passionate about\nlearning new things 📚",
-    1400,
   ];
 
   return (

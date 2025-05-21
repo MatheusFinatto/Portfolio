@@ -10,29 +10,20 @@ const About = () => {
         <Contact />
       </div>
 
-      <p className={styles.about}>
-        <span>Hello, I&apos;m Matheus Finatto, a web developer.</span>
-        <br />
-        I have Bachelor&apos;s degrees in both Computer Science and Business
-        Administration.
-        <br />
-        <br />
-        My expertise includes React, TypeScript, JavaScript, HTML5, CSS3,
-        GraphQL, REST APIs, Node.js, and Express.js. I also have experience with
-        C++, Java, C# (.NET Framework), and Python.
-        <br />
-        <br />
-        Currently, I work focusing on front-end development with React.
-        <br />
-        <br />
-        Beyond that, I am also interested in back-end development and machine
-        learning. I am always looking to explore new technologies and enhance my
-        skill set.
-        <br />
-        <br />
-        Feel free to reach out if you have any questions or would like to
-        connect. 😃
-      </p>
+      <div className={styles.container}>
+        <div className={styles.bioCard}>
+          <div className={styles.bioInfo}>
+            <h3 className={styles.jobTitle}>Hey, happy to meet you!</h3>
+            <p className={styles.bioText}>
+              I&apos;m a web developer who loves creating cool digital
+              experiences! With backgrounds in both Computer Science and
+              Business, I enjoy bringing creative ideas to life through code.
+              I&apos;m passionate about React and front-end development, and
+              I&apos;m always excited to learn and try out new technologies!
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
