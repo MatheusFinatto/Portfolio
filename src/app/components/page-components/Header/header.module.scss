@@ -1,31 +1,77 @@
+@use "src/app/styles/variables.scss";
+
 .header {
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  background-color: indigo;
-  padding-top: 120px;
+  background: variables.$header-gradient;
+  padding-top: 80px;
 
   div {
-    width: 100%;
-    margin: -60px 0 -4vw 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: indigo;
+    position: relative;
+    z-index: 2;
+
     h1 {
       font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 12px;
+      font-size: 2.75rem;
+      margin-bottom: 1rem;
       font-family: montserrat;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+      @media (max-width: 640px) {
+        font-size: 2.25rem;
+      }
     }
+
     h2 {
       font-weight: 500;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-family: montserrat;
+      color: variables.$text-secondary-color;
+
+      @media (max-width: 640px) {
+        font-size: 1.1rem;
+      }
     }
   }
+
   svg {
     display: block;
     position: sticky;
+    margin-top: 2rem;
+  }
+
+  .profileContainer {
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+    img {
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      display: block;
+    }
+  }
+
+  .typewriterWrapper {
+    display: inline-block;
+    max-width: 80%;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    @media (max-width: 640px) {
+      max-width: 90%;
+      padding: 0.5rem 1rem;
+    }
   }
 }
 

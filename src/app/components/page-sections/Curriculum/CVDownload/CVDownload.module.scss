@@ -1,12 +1,70 @@
 @use "/src/app/styles/variables.scss";
 
 .buttonsContainer {
-  margin: auto;
-  > a button {
-    width: 170px;
-    margin: 0 10px;
-    @media screen and (max-width: 500px) {
-      margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2.5rem auto;
+
+  > a {
+    text-decoration: none;
+
+    button {
+      min-width: 200px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      background-image: variables.$primary-gradient;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 250px;
+    margin: 2rem auto;
+
+    > a {
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
     }
   }
 }

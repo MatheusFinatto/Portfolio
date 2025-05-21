@@ -1,0 +1,93 @@
+@use "src/app/styles/variables.scss";
+
+.typewriterWrapper {
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: loadingDots 1.5s ease-in-out;
+    animation-fill-mode: both;
+    z-index: 1;
+  }
+
+  // First line as placeholder
+  &::after {
+    position: absolute;
+    color: variables.$text-secondary-color;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: showPlaceholder 0.3s ease-in 0.7s forwards;
+    z-index: 0;
+  }
+}
+
+.typewriterText {
+  min-height: 48px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+  display: block;
+  color: variables.$text-secondary-color;
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in 1.5s forwards;
+  z-index: 2;
+  position: relative;
+}
+
+@keyframes loadingDots {
+  0% {
+    content: "...";
+    opacity: 1;
+  }
+  20% {
+    content: ".";
+    opacity: 1;
+  }
+  40% {
+    content: "..";
+    opacity: 1;
+  }
+  60% {
+    content: "...";
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+@keyframes showPlaceholder {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

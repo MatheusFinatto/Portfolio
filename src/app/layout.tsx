@@ -1,7 +1,7 @@
 import "./styles/globals.scss";
 import "./styles/button.scss";
 import "./styles/section.scss";
-import { Inter, Montserrat, Poppins } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });

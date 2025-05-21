@@ -10,8 +10,9 @@
 html body {
   height: 100%;
   max-width: 100vw;
-  color: white;
+  color: variables.$text-color;
   background-color: variables.$main-background-color;
+  line-height: 1.6;
 }
 
 .container {
@@ -20,6 +21,76 @@ html body {
   min-height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: variables.$text-color;
+  text-decoration: none;
+  transition: variables.$transition-fast;
+
+  &:hover {
+    color: variables.$primary-color;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Utility classes
+.text-gradient {
+  background: variables.$primary-gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card {
+  background: variables.$card-background;
+  border: variables.$card-border;
+  border-radius: variables.$card-border-radius;
+  padding: 1.5rem;
+  box-shadow: variables.$card-shadow;
+  transition: variables.$transition-standard;
+
+  &:hover {
+    border: variables.$card-border-hover;
+    box-shadow: variables.$card-hover-shadow;
+    transform: translateY(-4px);
+  }
+}
+
 .sectionTitle {
   font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
 }

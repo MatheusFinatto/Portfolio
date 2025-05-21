@@ -13,97 +13,26 @@ $breakpoints: (
   display: flex;
   flex-direction: column;
   padding: $main-padding;
+  background-color: variables.$main-background-color;
+  position: relative;
+  padding-top: 2rem;
+
   @each $breakpoint, $padding in $breakpoints {
     @media screen and #{$breakpoint} {
-      padding: 0 $padding;
+      padding: 2rem $padding 0;
     }
   }
-}
 
-.splitScreen {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0 20px;
-  h1 {
-    text-align: start;
-    margin-top: 30px;
-    color: variables.$line-decoration-color;
-    text-decoration: none;
-    font-family: montserrat;
-  }
-  > .heading {
-    display: flex;
-    gap: 30px;
-    margin: 0;
-
-    > .headingText {
-      text-align: start;
-      margin-top: 30px;
-      min-height: 180px;
-      width: 310px;
-    }
-  }
-}
-
-.profileImageContainer {
-  display: flex;
-  align-items: center;
-  .profileImage {
-    border-radius: 50%;
-  }
-}
-
-.profileInfo {
-  text-align: start;
-  margin-top: 30px;
-  width: 350px;
-  height: 180px;
-}
-
-@media screen and (max-width: 1000px) {
-  .splitScreen {
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-  }
-  .profileInfo {
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .splitScreen {
-    // gap: 0;
-    margin-top: 20px;
-    .heading {
-      gap: 0;
-
-      flex-direction: column;
-      > .headingText {
-        text-align: start;
-        width: 100%;
-        margin: 0;
-        h1 {
-          font-size: 2rem;
-        }
-        span {
-          max-width: 290px;
-        }
-      }
-      .profileImageContainer {
-        align-items: baseline;
-        justify-content: center;
-        margin: 0;
-        .profileImage {
-          border-radius: 50%;
-        }
-      }
-    }
-    .profileInfo {
-      margin: 0;
-      margin-bottom: 50px;
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: url("/images/noise.png");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
   }
 }

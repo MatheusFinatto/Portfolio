@@ -71,9 +71,7 @@ const Projects = () => {
       if (homepage) {
         return (
           <a href={homepage!} target="_blank">
-            <button className={styles.deployedAppButton}>
-              See the deployed app
-            </button>
+            <button className={styles.deployedAppButton}>Live demo</button>
           </a>
         );
       }
@@ -84,7 +82,7 @@ const Projects = () => {
             className={styles.disabled}
             onClick={() => alert("You already are on my portfolio ;)")}
           >
-            See the deployed app
+            Live demo
           </button>
         </a>
       );
@@ -94,14 +92,16 @@ const Projects = () => {
   if (loading) {
     return (
       <section id="projects" className={styles.projects}>
-        <div>
+        <div className={styles.projectsHeader}>
           <h1>Projects</h1>
           <h2>
             Here are displayed my GitHub projects. Most of them are deployed on
             hosting sites, and can be accessed through the button &#34;See the
             deployed app&#34;.
           </h2>
-          <p>Loading...</p>
+          <div className="loading-spinner">
+            <p>Loading projects...</p>
+          </div>
         </div>
       </section>
     );
@@ -109,7 +109,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className={styles.projects}>
-      <div>
+      <div className={styles.projectsHeader}>
         <h1>Projects</h1>
         <h2>
           Here are displayed my GitHub projects. Most of them are deployed on
@@ -132,11 +132,11 @@ const Projects = () => {
               </h3>
               <Image
                 src={imageUrl}
-                alt="Repo screenshot"
+                alt={`${name} screenshot`}
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "100%", height: "200px", objectFit: "cover" }}
                 priority={false}
               />
               <p className={styles.description}>{description}</p>
@@ -154,7 +154,7 @@ const Projects = () => {
         })}
       </ul>
       {!repos.length && (
-        <div>
+        <div className={styles.errorMessage}>
           <span>
             Error loading repos. This is probably due to GitHub&apos;s API rate
             limit.

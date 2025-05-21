@@ -1,23 +1,41 @@
+@use "/src/app/styles/variables.scss";
+
 .contact {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0 3rem;
+
   a {
-    margin: 10px;
-    color: indigo;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
-    background-color: #ffffff;
-    transition: transform 0.3s ease;
-    padding: 8px;
-    font-size: 2.1rem;
-    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+
     &:hover {
-      transform: scale(1.2);
-      cursor: pointer;
+      transform: translateY(-5px);
+      background-color: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2),
+        0 0 10px rgba(variables.$primary-color, 0.3);
+      color: variables.$text-color;
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    svg {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
     }
   }
 }

@@ -1,5 +1,51 @@
-$main-background-color: #131313;
-$button-hover-color: #030335;
-$button-transition: linear 0.25s;
-$line-decoration-color: #b82828;
-$button-disabled-color: #222;
+// Updated color palette
+$main-background-color: #111827; // Dark gray with blue undertone
+$secondary-background-color: #1f2937; // Slightly lighter gray
+$primary-color: #5b21b6; // Vibrant purple (darkened)
+$secondary-color: #4338ca; // Indigo (darkened)
+$accent-color: #7e22ce; // Medium purple
+$text-color: #f3f4f6; // Off-white
+$text-secondary-color: #d1d5db; // Light gray
+$text-muted-color: #9ca3af; // Medium gray
+
+// Gradients
+$primary-gradient: linear-gradient(to right, $primary-color, $secondary-color);
+$header-gradient: linear-gradient(
+  to right,
+  #3730a3,
+  #5b21b6,
+  #3730a3
+); // Darker purple gradient
+$card-gradient: linear-gradient(
+  135deg,
+  rgba(79, 70, 229, 0.1),
+  rgba(109, 40, 217, 0.1)
+);
+
+// Button styling
+$button-hover-color: #4c1d95; // Darker purple
+$button-transition: all 0.3s ease;
+$button-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$button-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+// Line decoration & borders
+$line-decoration-color: $primary-gradient;
+$border-color: #374151; // Dark gray for borders
+$border-hover-color: $accent-color;
+
+// Card styling
+$card-background: rgba(31, 41, 55, 0.5); // Semi-transparent dark gray
+$card-border: 1px solid $border-color;
+$card-border-hover: 1px solid $border-hover-color;
+$card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$card-border-radius: 12px;
+
+// Other
+$button-disabled-color: #4b5563; // Gray
+$transition-standard: all 0.3s ease-in-out;
+$transition-fast: all 0.2s ease;

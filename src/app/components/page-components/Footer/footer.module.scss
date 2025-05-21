@@ -1,31 +1,67 @@
+@use "src/app/styles/variables.scss";
+
 .footer {
   width: 100%;
-  background-color: indigo;
+  background: variables.$header-gradient;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: auto;
-  padding: 50px;
-  margin-top: 100px;
+  padding: 3.5rem 1.5rem 3rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("/images/noise.png");
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
   span {
-    margin-top: 20px;
+    margin-top: 1.25rem;
+    color: variables.$text-secondary-color;
+    position: relative;
+    z-index: 1;
+
+    &:first-of-type {
+      font-weight: 500;
+    }
   }
 }
 
 .backToTopBtn {
   position: fixed;
-  bottom: 20px;
-  right: 30px;
+  bottom: 2rem;
+  right: 2rem;
   z-index: 99;
-  font-size: 18px;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.25rem;
   border: none;
   outline: none;
   color: white;
   cursor: pointer;
-  background-color: rgb(158, 40, 255);
+  background: variables.$primary-color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: variables.$transition-standard;
+
   &:hover {
-    background-color: midnightblue;
-    color: white;
+    background-color: variables.$button-hover-color;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }

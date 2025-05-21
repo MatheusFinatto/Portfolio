@@ -1,4 +1,4 @@
-@use "/src/app/styles/variables";
+@use "/src/app/styles/variables.scss";
 
 .nav ul {
   position: relative;
@@ -6,22 +6,46 @@
   display: flex;
   flex-direction: row;
   list-style: none;
-  gap: 5vw;
-  margin: 20px 0 5% 0;
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem 0;
   padding: 0;
+
   li {
     a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: white;
       text-decoration: none;
-      padding: 8px 16px;
-      background-color: midnightblue;
-      border-radius: 30px;
+      padding: 0.625rem 1.25rem;
+      background: rgba(variables.$secondary-color, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 9999px;
       font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: variables.$button-shadow;
+      transition: variables.$transition-standard;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
       &:hover {
-        cursor: pointer;
-        background-color: variables.$button-hover-color;
-        transition: variables.$button-transition;
+        background: variables.$primary-color;
+        transform: translateY(-2px);
+        box-shadow: variables.$button-hover-shadow;
       }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    gap: 0.75rem;
+
+    li a {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
     }
   }
 }
@@ -30,6 +54,6 @@
   .nav ul {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 0.75rem;
   }
 }

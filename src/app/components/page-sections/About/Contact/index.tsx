@@ -18,38 +18,39 @@ const Contact = ({ size = 50 }: { size?: number }) => {
     alert("Email 'matheusfinatto2@gmail.com' copied to clipboard!");
   };
 
+  // We don't need to use the size prop anymore as we'll control size in CSS
   return (
     <div className={styles.contact}>
       <a
         href="https://github.com/MatheusFinatto"
         target="_blank"
-        style={{ width: size, height: size }}
+        aria-label="GitHub"
       >
         <FaGithub />
       </a>
       <a
         href="https://www.linkedin.com/in/matheusfinatto/"
         target="_blank"
-        style={{ width: size, height: size }}
+        aria-label="LinkedIn"
       >
         <FaLinkedin />
       </a>
       <a
         href="https://www.instagram.com/matheusfinatto/"
         target="_blank"
-        style={{ width: size, height: size }}
+        aria-label="Instagram"
       >
         <FaInstagram />
       </a>
       <a
         href="https://api.whatsapp.com/send?phone=5554991683475&text=Hey%2C%20Matheus!%20I%20saw%20your%20profile%20on%20your%20website."
         target="_blank"
-        style={{ width: size, height: size }}
+        aria-label="WhatsApp"
       >
         <FaWhatsapp />
       </a>
-      <a onClick={copyToClipboard} style={{ width: size, height: size }}>
-        <FaEnvelope style={{ width: size - 20, height: size - 20 }} />
+      <a onClick={copyToClipboard} aria-label="Email">
+        <FaEnvelope />
       </a>
     </div>
   );
