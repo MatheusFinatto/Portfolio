@@ -28,7 +28,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <span>© Matheus Finatto 2023</span>
+      <span>© Matheus Finatto {new Date().getFullYear()}</span>
       <span>Contact me on my social media!</span>
       <Contact size={35} />
 

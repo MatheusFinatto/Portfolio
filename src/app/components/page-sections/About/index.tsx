@@ -13,13 +13,19 @@ const About = () => {
       <div className={styles.container}>
         <div className={styles.bioCard}>
           <div className={styles.bioInfo}>
-            <h3 className={styles.jobTitle}>Hey, happy to meet you!</h3>
+            <h3 className={styles.jobTitle}>Hi, I&apos;m Matheus.</h3>
             <p className={styles.bioText}>
-              I&apos;m a web developer who loves creating cool digital
-              experiences! With backgrounds in both Computer Science and
-              Business, I enjoy bringing creative ideas to life through code.
-              I&apos;m passionate about React and front-end development, and
-              I&apos;m always excited to learn and try out new technologies!
+              Full-stack developer with 5+ years of production experience,
+              specializing in React, TypeScript, Node.js, and GraphQL. I
+              currently build web tooling for a production ERP platform at
+              Wonder Sistemas — working daily with Apollo GraphQL, NestJS,
+              Express, and Ant Design.
+            </p>
+            <p className={styles.bioText}>
+              I care about developer ergonomics, clean API design, and shipping
+              features that hold up under real users — not just demos. Computer
+              Science degree, Business Administration background, and a genuine
+              interest in the intersection of both.
             </p>
           </div>
         </div>

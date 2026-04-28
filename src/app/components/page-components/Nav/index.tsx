@@ -1,39 +1,21 @@
-"use client";
-
 import React from "react";
 import styles from "./nav.module.scss";
 
-const Nav = () => {
-  const scrollToSection = (event: any, sectionId: any) => {
-    event.preventDefault();
-    const section = document.getElementById(sectionId);
-    section!.scrollIntoView({ behavior: "smooth" });
-  };
+const navLinks = [
+  { label: "About me", href: "#about" },
+  { label: "Experience", href: "#CVDownload" },
+  { label: "Projects", href: "#projects" },
+];
 
+const Nav = () => {
   return (
     <nav className={styles.nav}>
       <ul>
-        <li>
-          <a href="#about" onClick={(event) => scrollToSection(event, "about")}>
-            About me
-          </a>
-        </li>
-        <li>
-          <a
-            href="#CVDownload"
-            onClick={(event) => scrollToSection(event, "CVDownload")}
-          >
-            Experience
-          </a>
-        </li>
-        <li>
-          <a
-            href="#projects"
-            onClick={(event) => scrollToSection(event, "projects")}
-          >
-            Projects
-          </a>
-        </li>
+        {navLinks.map(({ label, href }) => (
+          <li key={href}>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

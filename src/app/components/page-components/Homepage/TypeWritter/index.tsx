@@ -3,14 +3,15 @@ import { TypeAnimation } from "react-type-animation";
 import styles from "./typewriter.module.scss";
 
 const TypeWritter = () => {
-  // Breaking longer phrases into two lines for better presentation
   const sequence = [
-    "And I am a web developer 💻",
-    1400,
-    "And I hold a Bachelor's in\nComputer Science 🎓",
-    1400,
-    "And I hold a Bachelor's in\nBusiness Administration 🏢",
-    1400,
+    "React + Node developer",
+    1600,
+    "Building internal tools at scale",
+    1600,
+    "Open to remote roles (Europe / NA)",
+    1600,
+    "TypeScript · GraphQL · NestJS",
+    1600,
   ];
 
   return (
@@ -18,9 +19,10 @@ const TypeWritter = () => {
       <TypeAnimation
         sequence={sequence}
         wrapper="span"
-        speed={70}
+        speed={65}
         className={styles.typewriterText}
         repeat={Infinity}
+        preRenderFirstString
       />
     </div>
   );

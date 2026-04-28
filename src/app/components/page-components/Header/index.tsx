@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import styles from "./header.module.scss";
 import Nav from "../Nav";
@@ -18,13 +17,27 @@ const Header = () => {
             priority
           />
         </div>
+
         <h1>
-          Hi, my name is Matheus Finatto <span className={styles.wave}>👋</span>
+          Hi, I&apos;m Matheus Finatto <span className={styles.wave}>👋</span>
         </h1>
+
         <div className={styles.typewriterWrapper}>
           <TypeWritter />
         </div>
-        <h2>And I've created this space to share my work with you! 😊</h2>
+
+        <div className={styles.ctaRow}>
+          <a href="/Resume-Matheus-Finatto-en-us.pdf" download className={styles.ctaPrimary}>
+            Download CV
+          </a>
+          <a href="#projects" className={styles.ctaOutline}>
+            View Projects
+          </a>
+          <a href="#about" className={styles.ctaOutline}>
+            Contact me
+          </a>
+        </div>
+
         <Nav />
       </div>
 
@@ -36,7 +49,7 @@ const Header = () => {
         <path
           fill="#111827"
           d="M0,64L40,74.7C80,85,160,107,240,117.3C320,128,400,128,480,122.7C560,117,640,107,720,96C800,85,880,75,960,90.7C1040,107,1120,149,1200,154.7C1280,160,1360,128,1400,112L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
-        ></path>
+        />
       </svg>
     </header>
   );

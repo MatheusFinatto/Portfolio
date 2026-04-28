@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import CVDownload from "./CVDownload";
 import styles from "./curriculum.module.scss";
 import {
@@ -11,65 +10,45 @@ import {
   FaServer,
 } from "react-icons/fa";
 
-const skills = [
-  { name: "React", category: "frontend", level: 95, icon: <FaReact /> },
-  { name: "TypeScript", category: "frontend", level: 85 },
-  { name: "JavaScript", category: "frontend", level: 95 },
-  { name: "HTML5 & CSS3", category: "frontend", level: 95 },
-  { name: "GraphQL", category: "backend", level: 80 },
-  { name: "Node.js", category: "backend", level: 75, icon: <FaNodeJs /> },
-  { name: "Express.js", category: "backend", level: 75 },
-  { name: "REST APIs", category: "backend", level: 80 },
-  { name: "SQL", category: "database", level: 85, icon: <FaDatabase /> },
-  { name: "MongoDB", category: "database", level: 80 },
-  { name: "C++", category: "languages", level: 70, icon: <FaCode /> },
-  { name: "Java", category: "languages", level: 65 },
-  { name: "C#/.NET", category: "languages", level: 65 },
-  { name: "Python", category: "languages", level: 80 },
-  { name: "Ant Design", category: "ui", level: 85, icon: <FaDesktop /> },
-  { name: "Responsive Design", category: "ui", level: 90 },
+type Skill = { name: string; category: string };
+
+const skills: Skill[] = [
+  { name: "React", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "JavaScript", category: "frontend" },
+  { name: "HTML5 & CSS3", category: "frontend" },
+  { name: "GraphQL", category: "backend" },
+  { name: "Apollo GraphQL", category: "backend" },
+  { name: "Node.js", category: "backend" },
+  { name: "NestJS", category: "backend" },
+  { name: "Express.js", category: "backend" },
+  { name: "REST APIs", category: "backend" },
+  { name: "Ruby on Rails", category: "backend" },
+  { name: "SQL", category: "database" },
+  { name: "MongoDB", category: "database" },
+  { name: "C++", category: "languages" },
+  { name: "Java", category: "languages" },
+  { name: "C#/.NET", category: "languages" },
+  { name: "Python", category: "languages" },
+  { name: "Ant Design", category: "ui" },
+  { name: "Vitest", category: "tooling" },
+  { name: "React Testing Library", category: "tooling" },
+  { name: "Docker", category: "tooling" },
+  { name: "Git", category: "tooling" },
+  { name: "Responsive Design", category: "ui" },
+  { name: "SCSS", category: "ui" },
 ];
 
-// Organize skills by category
 const categories = [
-  { id: "frontend", title: "Frontend" },
-  { id: "backend", title: "Backend" },
-  { id: "database", title: "Database" },
-  { id: "languages", title: "Other Languages" },
-  { id: "ui", title: "UI/UX" },
+  { id: "frontend", title: "Frontend", icon: <FaReact aria-hidden="true" /> },
+  { id: "backend", title: "Backend", icon: <FaNodeJs aria-hidden="true" /> },
+  { id: "database", title: "Database", icon: <FaDatabase aria-hidden="true" /> },
+  { id: "languages", title: "Other Languages", icon: <FaCode aria-hidden="true" /> },
+  { id: "ui", title: "UI / Styling", icon: <FaDesktop aria-hidden="true" /> },
+  { id: "tooling", title: "Tooling & Testing", icon: <FaServer aria-hidden="true" /> },
 ];
 
 const Curriculum = () => {
-  // Type the ref correctly for TypeScript
-  const skillBarsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Animation for skill bars
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Type cast entry.target to HTMLElement
-            const target = entry.target as HTMLElement;
-            target.style.width = target.dataset.width || "0%";
-            target.style.opacity = "1";
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    skillBarsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      skillBarsRef.current.forEach((el) => {
-        if (el) observer.unobserve(el);
-      });
-    };
-  }, []);
-
   return (
     <>
       <section id="CVDownload">
@@ -81,36 +60,61 @@ const Curriculum = () => {
           <div className={styles.job}>
             <h3>Wonder Sistemas</h3>
             <p className={styles.jobTitle}>Software Developer</p>
-            <p className={styles.jobDuration}>April 2022 - Present</p>
+            <p className={styles.jobDuration}>April 2021 - Present</p>
             <p className={styles.jobLocation}>
               Erechim, Rio Grande do Sul, Brazil
             </p>
-            <p>
-              As a web tools developer for an ERP software, I specialize in
-              utilizing cutting-edge technologies such as React, GraphQL, Apollo
-              GraphQL, and Ant Design.
-            </p>
+            <ul className={styles.bulletList}>
+              <li>
+                Architected and delivered end-to-end the platform&apos;s expense
+                management module — from data modeling and UI design to external
+                service integrations — starting from scratch and now in use by
+                dozens of client companies.
+              </li>
+              <li>
+                Integrated AWS Textract for OCR parsing of fiscal invoices and
+                built a scraper that extracts data from electronic invoices via
+                QR code on the SEFAZ portal, eliminating manual data entry.
+                Extended the Ruby on Rails BFF to support the full flow.
+              </li>
+              <li>
+                Co-created and maintain a reusable React component library
+                documented with JSDoc, standardizing UI patterns and accelerating
+                delivery across a team of 6 developers.
+              </li>
+              <li>
+                Covered critical flows with unit and snapshot tests (Vitest +
+                React Testing Library) to prevent regressions in production.
+              </li>
+            </ul>
             <div className={styles.techTags}>
               <span className={styles.tag}>React</span>
+              <span className={styles.tag}>TypeScript</span>
               <span className={styles.tag}>GraphQL</span>
               <span className={styles.tag}>Apollo</span>
+              <span className={styles.tag}>NestJS</span>
+              <span className={styles.tag}>AWS Textract</span>
+              <span className={styles.tag}>Docker</span>
+              <span className={styles.tag}>Vitest</span>
+              <span className={styles.tag}>Ruby on Rails</span>
               <span className={styles.tag}>Ant Design</span>
-              <span className={styles.tag}>TypeScript</span>
             </div>
           </div>
 
           <div className={styles.job}>
             <h3>Compass.uol</h3>
-            <p className={styles.jobTitle}>Chatbot Take Intern</p>
-            <p className={styles.jobDuration}>Dec. 2021 - Mar. 2022</p>
+            <p className={styles.jobTitle}>Chatbot Developer Intern</p>
+            <p className={styles.jobDuration}>Feb. 2021 - Apr. 2021</p>
             <p className={styles.jobLocation}>
               Erechim, Rio Grande do Sul, Brazil
             </p>
-            <p>
-              Learning related to Javascript, Node.js, Blip chatbot platform,
-              IBM Watson Assistant, and other tools for making chatbots and
-              integrations with APIs.
-            </p>
+            <ul className={styles.bulletList}>
+              <li>
+                Built chatbots in Node.js integrating IBM Watson Assistant and
+                the Blip platform, focusing on conversational flow automation,
+                external API integration, and backend development.
+              </li>
+            </ul>
             <div className={styles.techTags}>
               <span className={styles.tag}>JavaScript</span>
               <span className={styles.tag}>Node.js</span>
@@ -121,54 +125,27 @@ const Curriculum = () => {
           </div>
         </div>
 
-        {/* Integrated Skills Section */}
         <div className={styles.skillsContainer}>
           <div className={styles.sectionHeading}>
             <h1>Technical Skills</h1>
           </div>
 
-          <div className={styles.integratedSkillsContainer}>
-            {categories.map((category, categoryIndex) => {
-              // Find a skill with an icon for this category
-              const categoryIcon =
-                skills.find(
-                  (skill) => skill.category === category.id && skill.icon
-                )?.icon || null;
-
-              // Get all skills for this category
+          <div className={styles.skillsGrid}>
+            {categories.map((category) => {
               const categorySkills = skills.filter(
-                (skill) => skill.category === category.id
+                (s) => s.category === category.id
               );
-
               return (
-                <div className={styles.skillCategory} key={categoryIndex}>
+                <div className={styles.skillCategory} key={category.id}>
                   <div className={styles.categoryHeader}>
-                    <div className={styles.categoryIcon}>{categoryIcon}</div>
+                    <div className={styles.categoryIcon}>{category.icon}</div>
                     <h3>{category.title}</h3>
                   </div>
-
-                  <div className={styles.skillsList}>
-                    {categorySkills.map((skill, skillIndex) => (
-                      <div className={styles.skillItem} key={skillIndex}>
-                        <div className={styles.skillInfo}>
-                          <span className={styles.skillName}>{skill.name}</span>
-                          <span className={styles.skillPercentage}>
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <div className={styles.skillProgress}>
-                          <div
-                            className={styles.skillProgressBar}
-                            ref={(el) =>
-                              (skillBarsRef.current[
-                                categoryIndex * 10 + skillIndex
-                              ] = el)
-                            }
-                            data-width={`${skill.level}%`}
-                            style={{ width: 0, opacity: 0 }}
-                          ></div>
-                        </div>
-                      </div>
+                  <div className={styles.skillChips}>
+                    {categorySkills.map((skill) => (
+                      <span key={skill.name} className={styles.skillChip}>
+                        {skill.name}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -186,7 +163,7 @@ const Curriculum = () => {
         <div className={styles.educationContainer}>
           <div className={styles.education}>
             <h3>
-              Universidade Regional Integrada do Alto Uruguai e das Missões -
+              Universidade Regional Integrada do Alto Uruguai e das Missões —
               URI
             </h3>
             <p className={styles.degree}>
@@ -196,7 +173,7 @@ const Curriculum = () => {
           </div>
 
           <div className={styles.education}>
-            <h3>HarvardX - EdX, Online</h3>
+            <h3>HarvardX — EdX (Online)</h3>
             <p className={styles.degree}>
               CS50x: Introduction to Computer Science
             </p>
@@ -217,9 +194,8 @@ const Curriculum = () => {
         <div className={styles.cvSection}>
           <h1>Download my CV</h1>
           <h2>
-            Feel free to take a look at my CV in English or Brazilian Portuguese
-            if you&apos;d like more details about my experience and education.
-            😁
+            Available in English and Brazilian Portuguese with full experience
+            and education detail.
           </h2>
           <CVDownload />
         </div>

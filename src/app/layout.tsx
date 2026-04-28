@@ -1,14 +1,43 @@
 import "./styles/globals.scss";
 import "./styles/button.scss";
 import "./styles/section.scss";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Matheus' Portfolio",
-  description: "Matheus Finatto's portfolio showcase",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://matheusfinatto.vercel.app"),
+  title: "Matheus Finatto — React + Node Developer",
+  description:
+    "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL. Currently building ERP tooling at Wonder Sistemas.",
+  keywords: [
+    "React developer",
+    "Node.js developer",
+    "TypeScript",
+    "NestJS",
+    "GraphQL",
+    "full-stack developer",
+    "frontend developer",
+    "Matheus Finatto",
+  ],
+  authors: [{ name: "Matheus Finatto" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://matheusfinatto.vercel.app",
+    title: "Matheus Finatto — React + Node Developer",
+    description:
+      "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL.",
+    siteName: "Matheus Finatto",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Matheus Finatto — React + Node Developer",
+    description:
+      "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL.",
+  },
 };
 
 export default function RootLayout({
@@ -18,13 +47,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-        />
-      </head>
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
