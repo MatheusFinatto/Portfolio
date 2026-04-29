@@ -1,42 +1,50 @@
 import "./styles/globals.scss";
-import "./styles/button.scss";
-import "./styles/section.scss";
-import { Montserrat } from "next/font/google";
 import type { Metadata } from "next";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { AppProvider } from "./context/AppContext";
 import { Analytics } from "@vercel/analytics/next";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://matheusfinatto.vercel.app"),
-  title: "Matheus Finatto — React + Node Developer",
+  metadataBase: new URL("https://matheusfinatto-portfolio.vercel.app"),
+  title: "Matheus Finatto — Fullstack Developer",
   description:
-    "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL. Currently building ERP tooling at Wonder Sistemas.",
+    "Fullstack developer with 5+ years building production web applications. React, TypeScript, NestJS, PostgreSQL.",
   keywords: [
     "React developer",
-    "Node.js developer",
+    "Fullstack developer",
     "TypeScript",
     "NestJS",
     "GraphQL",
-    "full-stack developer",
-    "frontend developer",
+    "PostgreSQL",
     "Matheus Finatto",
   ],
   authors: [{ name: "Matheus Finatto" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://matheusfinatto.vercel.app",
-    title: "Matheus Finatto — React + Node Developer",
+    url: "https://matheusfinatto-portfolio.vercel.app",
+    title: "Matheus Finatto — Fullstack Developer",
     description:
-      "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL.",
+      "More than 5 years building production frontend apps, now architecting systems end-to-end.",
     siteName: "Matheus Finatto",
+    images: [{ url: "/photo.png" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Matheus Finatto — React + Node Developer",
-    description:
-      "Full-stack developer with 5+ years of production experience in React, TypeScript, Node.js, NestJS, and GraphQL.",
+    title: "Matheus Finatto — Fullstack Developer",
+    description: "5 years frontend, now building end-to-end.",
   },
 };
 
@@ -46,9 +54,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>
-        {children}
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <body>
+        <AppProvider>{children}</AppProvider>
         <Analytics />
       </body>
     </html>

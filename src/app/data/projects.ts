@@ -1,71 +1,74 @@
 export type Project = {
-  id: number;
-  name: string;
-  description: string;
-  techStack: string[];
-  githubUrl: string;
-  demoUrl?: string;
-  imageUrl?: string;
+  id: string;
+  year: string;
+  name: { en: string; pt: string };
+  desc: { en: string; pt: string };
+  stack: string[];
+  github: string | null;
+  demo: string | null;
+  featured?: boolean;
+  isNew?: boolean;
 };
 
 export const featuredProjects: Project[] = [
   {
-    id: 1,
-    name: "Chess AI",
-    description:
-      "Computer Science final thesis: a Chess AI built on the Minimax algorithm with Alpha-Beta Pruning, integrated with Lichess as a playable bot.",
-    techStack: ["Python", "Minimax", "Alpha-Beta Pruning", "Lichess API"],
-    githubUrl: "https://github.com/MatheusFinatto/ChessAI-Final_Thesis",
-    demoUrl: "https://chess-matheusfinatto.netlify.app/",
-    imageUrl: "/images/ChessAI-Final_Thesis.png",
+    id: "01",
+    year: "2026",
+    name: {
+      en: "Async Order Import",
+      pt: "Importação Assíncrona de Pedidos",
+    },
+    desc: {
+      en: "Order import system from CSV files with async background processing. Worker decoupled from the API via Redis/BullMQ queues to handle thousands of rows without blocking requests. Batch-oriented modeling with per-row traceability and dedicated audit endpoints.",
+      pt: "Sistema de importação de pedidos via CSV com processamento assíncrono. Worker desacoplado da API via filas Redis/BullMQ para suportar milhares de linhas sem bloquear requisições. Modelagem por lote com rastreabilidade por linha e endpoints de auditoria.",
+    },
+    stack: ["NestJS", "PostgreSQL", "Redis", "BullMQ", "Docker"],
+    github: null,
+    demo: null,
   },
   {
-    id: 2,
-    name: "PokeNext",
-    description:
-      "Modern Pokédex built with Next.js and PokéAPI. Fully responsive, uses static rendering and SSR to keep pages fast.",
-    techStack: ["Next.js", "React", "TailwindCSS", "PokéAPI"],
-    githubUrl: "https://github.com/MatheusFinatto/PokeNext",
-    demoUrl: "https://poke-next-snowy-xi.vercel.app",
-    imageUrl: "/images/PokeNext.png",
+    id: "02",
+    year: "2024",
+    name: {
+      en: "Chess AI",
+      pt: "Motor de Xadrez IA",
+    },
+    desc: {
+      en: "CS final thesis: a chess engine built from scratch using Minimax with Alpha-Beta Pruning, integrated with the Lichess Bot API for real-time online matches.",
+      pt: "TCC: motor de xadrez construído do zero com Minimax e Poda Alfa-Beta, integrado à API Lichess Bot para partidas online em tempo real.",
+    },
+    stack: ["Python", "Minimax", "Alpha-Beta", "Lichess API"],
+    github: "https://github.com/MatheusFinatto/ChessAI-Final_Thesis",
+    demo: "https://chess-matheusfinatto.netlify.app/",
   },
   {
-    id: 3,
-    name: "Pizzaria (Docker)",
-    description:
-      "Full-stack pizzeria platform with front-end and back-end, containerized with Docker. Built with vanilla JS, Node.js, and MySQL.",
-    techStack: ["Node.js", "JavaScript", "MySQL", "Docker"],
-    githubUrl: "https://github.com/MatheusFinatto/Pizzaria-website-with-docker",
-    demoUrl: "https://pizzaria-design-showcase.netlify.app/",
-    imageUrl: "/images/Pizzaria-website-with-docker.png",
+    id: "03",
+    year: "2023",
+    name: {
+      en: "PokeNext",
+      pt: "PokeNext",
+    },
+    desc: {
+      en: "Modern Pokédex built with Next.js and PokéAPI. Fully responsive, leverages static rendering and SSR for fast page loads. Shows command of the Next.js data-fetching model.",
+      pt: "Pokédex moderna com Next.js e PokéAPI. Responsiva, com SSG e SSR para páginas rápidas. Demonstra domínio do modelo de data-fetching do Next.js.",
+    },
+    stack: ["Next.js", "React", "TailwindCSS", "PokéAPI"],
+    github: "https://github.com/MatheusFinatto/PokeNext",
+    demo: "https://poke-next-snowy-xi.vercel.app",
   },
   {
-    id: 4,
-    name: "React Pizzaria",
-    description:
-      "First React project — a pizzeria UI built during the Compass.uol internship period, featuring a Blip chatbot integration.",
-    techStack: ["React", "JavaScript", "Blip"],
-    githubUrl: "https://github.com/MatheusFinatto/React-pizzaria-app",
-    demoUrl: "https://marios-pizzaria.netlify.app/",
-    imageUrl: "/images/React-pizzaria-app.png",
-  },
-  {
-    id: 5,
-    name: "Movies Library",
-    description:
-      "React app consuming the TMDB API to browse movies. First hands-on experience with React and external API integration.",
-    techStack: ["React", "JavaScript", "TMDB API"],
-    githubUrl: "https://github.com/MatheusFinatto/React-Movies-Library",
-    demoUrl: "https://exquisite-eclair-8819bf.netlify.app/",
-    imageUrl: "/images/React-Movies-Library.png",
-  },
-  {
-    id: 6,
-    name: "Portfolio",
-    description:
-      "This site. Built with Next.js 16, TypeScript, and SCSS to communicate a mid-senior React + Node profile.",
-    techStack: ["Next.js", "React", "TypeScript", "SCSS", "Vercel"],
-    githubUrl: "https://github.com/MatheusFinatto/Portfolio",
-    imageUrl: "/images/Screenshot.png",
+    id: "04",
+    year: "2022",
+    name: {
+      en: "Pizzaria (Docker)",
+      pt: "Pizzaria (Docker)",
+    },
+    desc: {
+      en: "Full-stack pizzeria platform with containerized frontend and backend. Built with vanilla JS, Node.js, and MySQL — a clear end-to-end ownership demonstration.",
+      pt: "Plataforma de pizzaria full-stack containerizada. JS vanilla, Node.js e MySQL — demonstração clara de ownership end-to-end.",
+    },
+    stack: ["Node.js", "JavaScript", "MySQL", "Docker"],
+    github: "https://github.com/MatheusFinatto/Pizzaria-website-with-docker",
+    demo: "https://pizzaria-design-showcase.netlify.app/",
   },
 ];

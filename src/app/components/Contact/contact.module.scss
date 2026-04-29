@@ -1,0 +1,39 @@
+.links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  letter-spacing: 0.06em;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+}
+
+@media (max-width: 600px) {
+  .links {
+    flex-direction: column;
+  }
+
+  .link {
+    width: 100%;
+    justify-content: center;
+  }
+}
