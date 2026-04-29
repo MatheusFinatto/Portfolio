@@ -43,14 +43,14 @@ export const t = {
         {
           company: "Wonder Sistemas",
           role: "Web Developer",
-          sub: "SaaS B2B ERP, 300+ corporate clients",
+          sub: "Business management platform (ERP), 300+ corporate clients",
           period: "Apr 2021 – Present",
           location: "Erechim, RS",
           bullets: [
-            "Architected and delivered the <strong>expense management module end-to-end</strong> (data modeling, UI, and external integrations) starting from an empty directory, now used by dozens of clients.",
-            "Integrated <strong>AWS Textract OCR</strong> for invoice reading and built a scraper extracting NFe data from the SEFAZ portal via QR code, eliminating manual form entry.",
-            "Co-created and maintain a <strong>documented React component library</strong>, standardizing UI patterns across a 6-developer team.",
-            "Ships production features with <strong>React, TypeScript, GraphQL</strong> and containerized Docker deploys.",
+            "Built the <strong>expense management module from scratch</strong>, covering database design, interface, and third-party integrations. Now used by dozens of clients.",
+            "Integrated <strong>AWS Textract</strong> for automated invoice data extraction and built a tool that reads tax document data from Brazil's fiscal portal via QR code, eliminating manual data entry.",
+            "Co-created and maintain a <strong>documented React component library</strong>, standardizing the UI across a 6-developer team.",
+            "Delivers features to production with <strong>React, TypeScript, GraphQL</strong> and Docker-based deployments.",
           ],
           stack: [
             "React",
@@ -139,14 +139,14 @@ export const t = {
         {
           company: "Wonder Sistemas",
           role: "Desenvolvedor Web",
-          sub: "Plataforma SaaS B2B ERP, 300+ clientes corporativos",
+          sub: "Plataforma de gestão empresarial (ERP), 300+ clientes corporativos",
           period: "Abr 2021 – Presente",
           location: "Erechim, RS",
           bullets: [
-            "Arquitetei e entreguei o <strong>módulo de gestão de despesas end-to-end</strong> (modelagem de dados, interface e integrações externas), partindo de um diretório vazio, hoje em uso por dezenas de empresas.",
-            "Integrei <strong>AWS Textract OCR</strong> para leitura de notas fiscais e construí scraper que extrai dados de NFe do portal SEFAZ via QR code, eliminando preenchimento manual.",
-            "Co-criei e mantenho uma <strong>biblioteca de componentes React documentada</strong>, padronizando padrões de UI para um time de 6 desenvolvedores.",
-            "Entrega funcionalidades com <strong>React, TypeScript, GraphQL</strong> e deploys containerizados com Docker.",
+            "Construí o <strong>módulo de gestão de despesas do zero</strong>, incluindo banco de dados, interface e integrações externas. Hoje em uso por dezenas de empresas.",
+            "Integrei <strong>AWS Textract</strong> para extração automática de dados de notas fiscais e construí uma ferramenta que lê NFe do portal SEFAZ via QR code, eliminando preenchimento manual.",
+            "Co-criei e mantenho uma <strong>biblioteca de componentes React documentada</strong>, padronizando a interface visual para um time de 6 desenvolvedores.",
+            "Entrega funcionalidades em produção com <strong>React, TypeScript, GraphQL</strong> e publicações automatizadas com Docker.",
           ],
           stack: [
             "React",
