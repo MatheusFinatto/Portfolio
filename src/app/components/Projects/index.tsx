@@ -89,7 +89,8 @@ export default function Projects() {
         <TechDrawer
           project={activeProject}
           lang={lang}
-          label={copy.decisionsLabel}
+          narrativeLabel={copy.decisionsNarrative}
+          technicalLabel={copy.decisionsTechnical}
           onClose={() => setActiveProject(null)}
         />
       )}
