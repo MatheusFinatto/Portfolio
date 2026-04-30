@@ -47,7 +47,7 @@ export default function Hero() {
 
         <div className={styles.meta}>
           <div className={styles.metaItem}>
-            <span>{copy.exp} years</span>
+            <span>{copy.exp} {copy.expUnit}</span>
             Wonder Sistemas
           </div>
           <div className={styles.metaItem}>

@@ -89,19 +89,29 @@
 
 .links {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .link {
   font-family: var(--mono);
   font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(64, 149, 201, 0.3);
+  border-radius: 4px;
+  padding: 8px 14px;
   text-decoration: none;
-  letter-spacing: 0.06em;
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s;
 
-  &:hover { color: var(--text); }
+  &:hover {
+    background: var(--accent);
+    color: #fff;
+  }
 }
 
 .linkDisabled {
@@ -110,6 +120,28 @@
   color: var(--muted);
   letter-spacing: 0.06em;
   font-style: italic;
+}
+
+.decisionsBtn {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(64, 149, 201, 0.3);
+  border-radius: 4px;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-align: left;
+  align-self: flex-start;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: var(--accent);
+    color: #fff;
+  }
 }
 
 @media (max-width: 900px) {

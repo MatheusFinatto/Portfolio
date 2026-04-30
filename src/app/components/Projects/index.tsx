@@ -1,15 +1,17 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { t } from '../../translations';
-import { featuredProjects } from '../../data/projects';
+import { featuredProjects, type Project } from '../../data/projects';
+import TechDrawer from './TechDrawer';
 import styles from './projects.module.scss';
 
 export default function Projects() {
   const { lang } = useApp();
   const copy = t[lang].projects;
   const gridRef = useRef<HTMLDivElement>(null);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -70,9 +72,27 @@ export default function Projects() {
                 </a>
               )}
             </div>
+
+            {p.techDecisions && (
+              <button
+                className={styles.decisionsBtn}
+                onClick={() => setActiveProject(p)}
+              >
+                + {copy.decisions}
+              </button>
+            )}
           </div>
         ))}
       </div>
+
+      {activeProject && (
+        <TechDrawer
+          project={activeProject}
+          lang={lang}
+          label={copy.decisionsLabel}
+          onClose={() => setActiveProject(null)}
+        />
+      )}
     </section>
   );
 }

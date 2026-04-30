@@ -94,22 +94,22 @@
 }
 
 .langBtn {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
+  font-size: 16px;
+  line-height: 1;
+  padding: 3px 6px;
   border-radius: 2px;
   border: none;
   cursor: pointer;
   background: transparent;
-  color: var(--muted);
-  transition: all 0.15s;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+
+  &:hover { opacity: 0.75; }
 }
 
 .langActive {
-  background: var(--accent);
-  color: #fff;
+  opacity: 1;
+  background: var(--surface);
 }
 
 .themeBtn {
@@ -184,11 +184,16 @@
   &:last-of-type { border-bottom: none; }
 }
 
-.mobileUtils {
-  display: flex;
-  gap: 12px;
+.mobileRight {
+  display: none;
   align-items: center;
-  margin-top: 16px;
+  gap: 8px;
+}
+
+.mobileControls {
+  display: none;
+  align-items: center;
+  gap: 8px;
 }
 
 @media (max-width: 900px) {
@@ -198,6 +203,14 @@
 
   .links {
     display: none;
+  }
+
+  .mobileRight {
+    display: flex;
+  }
+
+  .mobileControls {
+    display: flex;
   }
 
   .hamburger {

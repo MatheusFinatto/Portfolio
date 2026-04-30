@@ -1,27 +1,58 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { useApp } from '../../context/AppContext';
-import { t } from '../../translations';
-import styles from './nav.module.scss';
+import { useState, useEffect, useRef } from "react";
+import { FiDownload } from "react-icons/fi";
+import { useApp } from "../../context/AppContext";
+import { t } from "../../translations";
+import styles from "./nav.module.scss";
 
-const SECTIONS = ['projects', 'skills', 'experience', 'about', 'contact'] as const;
+const SECTIONS = [
+  "projects",
+  "skills",
+  "experience",
+  "about",
+  "contact",
+] as const;
 
 function SunIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
     </svg>
   );
 }
 
 function MoonIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -30,19 +61,22 @@ function MoonIcon() {
 export default function Nav() {
   const { lang, setLang, theme, toggleTheme } = useApp();
   const copy = t[lang].nav;
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const cvFile = lang === 'pt'
-    ? '/Resume-Matheus-Finatto-pt-br.pdf'
-    : '/Resume-Matheus-Finatto-en-us.pdf';
+  const cvFile =
+    lang === "pt"
+      ? "/Resume-Matheus-Finatto-pt-br.pdf"
+      : "/Resume-Matheus-Finatto-en-us.pdf";
 
   // Scroll-spy
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); });
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id);
+        });
       },
-      { rootMargin: '-40% 0px -50% 0px' }
+      { rootMargin: "-40% 0px -50% 0px" },
     );
     SECTIONS.forEach((id) => {
       const el = document.getElementById(id);
@@ -54,14 +88,16 @@ export default function Nav() {
   // Close menu on scroll
   useEffect(() => {
     const close = () => setMenuOpen(false);
-    if (menuOpen) window.addEventListener('scroll', close, { passive: true });
-    return () => window.removeEventListener('scroll', close);
+    if (menuOpen) window.addEventListener("scroll", close, { passive: true });
+    return () => window.removeEventListener("scroll", close);
   }, [menuOpen]);
 
   return (
     <>
       <nav className={styles.nav}>
-        <a className={styles.logo} href="#">mf.dev</a>
+        <a className={styles.logo} href="#">
+          mf.dev
+        </a>
 
         {/* Desktop links */}
         <ul className={styles.links}>
@@ -69,7 +105,7 @@ export default function Nav() {
             <li key={s}>
               <a
                 href={`#${s}`}
-                className={activeSection === s ? styles.active : ''}
+                className={activeSection === s ? styles.active : ""}
               >
                 {copy[s as keyof typeof copy]}
               </a>
@@ -77,36 +113,76 @@ export default function Nav() {
           ))}
           <li>
             <a href={cvFile} download className={styles.cvBtn}>
-              ↓ {copy.resume}
+              <FiDownload size={10} /> {copy.resume}
             </a>
           </li>
           <li>
             <div className={styles.langToggle}>
               <button
-                className={`${styles.langBtn} ${lang === 'en' ? styles.langActive : ''}`}
-                onClick={() => setLang('en')}
-              >EN</button>
+                className={`${styles.langBtn} ${lang === "en" ? styles.langActive : ""}`}
+                onClick={() => setLang("en")}
+                title="English"
+              >
+                🇺🇸
+              </button>
               <button
-                className={`${styles.langBtn} ${lang === 'pt' ? styles.langActive : ''}`}
-                onClick={() => setLang('pt')}
-              >PT</button>
+                className={`${styles.langBtn} ${lang === "pt" ? styles.langActive : ""}`}
+                onClick={() => setLang("pt")}
+                title="Português (BR)"
+              >
+                🇧🇷
+              </button>
             </div>
           </li>
           <li>
-            <button className={styles.themeBtn} onClick={toggleTheme} title="Toggle theme">
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            <button
+              className={styles.themeBtn}
+              onClick={toggleTheme}
+              title="Toggle theme"
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
           </li>
         </ul>
 
-        {/* Mobile hamburger */}
-        <button
-          className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <span /><span /><span />
-        </button>
+        {/* Mobile right group */}
+        <div className={styles.mobileRight}>
+          <div className={styles.mobileControls}>
+            <div className={styles.langToggle}>
+              <button
+                className={`${styles.langBtn} ${lang === "en" ? styles.langActive : ""}`}
+                onClick={() => setLang("en")}
+                title="English"
+              >
+                🇺🇸
+              </button>
+              <button
+                className={`${styles.langBtn} ${lang === "pt" ? styles.langActive : ""}`}
+                onClick={() => setLang("pt")}
+                title="Português (BR)"
+              >
+                🇧🇷
+              </button>
+            </div>
+            <button
+              className={styles.themeBtn}
+              onClick={toggleTheme}
+              title="Toggle theme"
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </button>
+          </div>
+
+          <button
+            className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -122,18 +198,14 @@ export default function Nav() {
               {copy[s as keyof typeof copy]}
             </a>
           ))}
-          <a href={cvFile} download className={styles.mobileLink} onClick={() => setMenuOpen(false)}>
-            ↓ {copy.resume}
+          <a
+            href={cvFile}
+            download
+            className={styles.mobileLink}
+            onClick={() => setMenuOpen(false)}
+          >
+            <FiDownload size={10} /> {copy.resume}
           </a>
-          <div className={styles.mobileUtils}>
-            <div className={styles.langToggle}>
-              <button className={`${styles.langBtn} ${lang === 'en' ? styles.langActive : ''}`} onClick={() => setLang('en')}>EN</button>
-              <button className={`${styles.langBtn} ${lang === 'pt' ? styles.langActive : ''}`} onClick={() => setLang('pt')}>PT</button>
-            </div>
-            <button className={styles.themeBtn} onClick={toggleTheme} title="Toggle theme">
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-            </button>
-          </div>
         </div>
       )}
     </>
