@@ -1,7 +1,7 @@
 .hero {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 1000px;
   padding-top: 64px;
 }
 
@@ -9,25 +9,25 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 64px 80px 48px;
+  padding: 0 60px 0 60px;
   position: relative;
 }
 
 .eyebrow {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--accent);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 28px;
+  margin-bottom: 35px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
-    width: 32px;
+    width: 40px;
     height: 1px;
     background: var(--accent);
     flex-shrink: 0;
@@ -35,11 +35,11 @@
 }
 
 .name {
-  font-size: clamp(56px, 7vw, 92px);
+  font-size: clamp(70px, 8.75vw, 115px);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.03em;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 
   span {
     color: var(--accent);
@@ -48,15 +48,16 @@
 
 .stats {
   display: flex;
-  gap: 36px;
-  margin-bottom: 32px;
+  gap: 45px;
+  margin-bottom: 40px;
 }
 
-.stat {}
+.stat {
+}
 
 .statNum {
   display: block;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -66,17 +67,17 @@
 .statLabel {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   letter-spacing: 0.06em;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 .tagline {
-  font-size: clamp(14px, 1.4vw, 17px);
+  font-size: clamp(17px, 1.75vw, 21px);
   color: var(--muted);
-  max-width: 480px;
-  margin-bottom: 40px;
+  max-width: 600px;
+  margin-bottom: 50px;
   line-height: 1.8;
 
   :global(strong) {
@@ -87,27 +88,27 @@
 
 .ctas {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 60px;
 }
 
 .meta {
   display: flex;
-  gap: 32px;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
 .metaItem {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   letter-spacing: 0.06em;
 
   span {
     display: block;
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--text);
     margin-bottom: 2px;
@@ -117,20 +118,12 @@
 .right {
   position: relative;
   overflow: hidden;
-  border-left: 1px solid var(--border);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(64, 149, 201, 0.12) 0%, transparent 60%);
-    z-index: 1;
-    pointer-events: none;
-  }
+  mask-image: linear-gradient(to right, transparent 5%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 100%);
 }
 
 .photo {
-  filter: grayscale(15%);
+  filter: grayscale(20%);
 }
 
 .photoTag {
@@ -148,19 +141,80 @@
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 900px) {
+/* laptop / short viewports */
+@media (max-height: 900px) and (min-width: 901px) {
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 420px;
   }
 
   .left {
-    padding: 48px 20px 40px;
+    padding: 0 40px 0 48px;
+  }
+
+  .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .name {
+    font-size: clamp(52px, 6vw, 80px);
+    margin-bottom: 24px;
+  }
+
+  .statNum {
+    font-size: 30px;
+  }
+
+  .stats {
+    margin-bottom: 24px;
+    gap: 32px;
+  }
+
+  .tagline {
+    font-size: clamp(15px, 1.4vw, 17px);
+    margin-bottom: 28px;
+  }
+
+  .ctas {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+
+  .left {
+    padding: 20px 20px;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    [data-theme="light"] & {
+      background: rgba(245, 244, 240, 0.72);
+    }
   }
 
   .right {
-    height: 380px;
-    border-left: none;
-    border-top: 1px solid var(--border);
+    position: absolute;
+    inset: 0;
+    height: auto;
+    border: none;
+
+    mask-image: linear-gradient(to left, black 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .photoTag {
+    display: none;
   }
 
   .stats {
