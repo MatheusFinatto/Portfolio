@@ -46,7 +46,7 @@ export const t = {
         {
           company: "Wonder Sistemas",
           role: "Web Developer",
-          sub: "Business management platform (ERP), 300+ corporate clients",
+          sub: "Business management platform (ERP), 800+ corporate clients",
           period: "Apr 2021 – Present",
           location: "Erechim, RS",
           bullets: [
@@ -145,7 +145,7 @@ export const t = {
         {
           company: "Wonder Sistemas",
           role: "Desenvolvedor Web",
-          sub: "Plataforma de gestão empresarial (ERP), 300+ clientes corporativos",
+          sub: "Plataforma de gestão empresarial (ERP), 800+ clientes corporativos",
           period: "Abr 2021 – Presente",
           location: "Erechim, RS",
           bullets: [

@@ -9,7 +9,7 @@ const GROUPS = [
   { key: 'fe',    label: { en: 'Frontend',       pt: 'Frontend'        }, tags: ['React','Next.js','Redux','TailwindCSS','SCSS','Styled Components'],    hl: ['React','Next.js'] },
   { key: 'be',    label: { en: 'Backend',        pt: 'Backend'         }, tags: ['NestJS','Node.js','Express','REST','GraphQL'],                         hl: ['NestJS','Node.js'] },
   { key: 'db',    label: { en: 'Databases',      pt: 'Bancos de Dados' }, tags: ['PostgreSQL','MongoDB','MySQL'],                                        hl: ['PostgreSQL'] },
-  { key: 'infra', label: { en: 'Infra & DevOps', pt: 'Infra & DevOps'  }, tags: ['Docker','Redis','BullMQ','AWS','GCP','GitHub Actions'],               hl: ['Docker','Redis'] },
+  { key: 'infra', label: { en: 'Infra & DevOps', pt: 'Infra & DevOps'  }, tags: ['Docker','RabbitMQ','AWS','GCP','GitHub Actions'],                    hl: ['Docker','RabbitMQ'] },
   { key: 'test',  label: { en: 'Testing',        pt: 'Testes'          }, tags: ['Vitest','React Testing Library'],                                      hl: [] },
 ] as const;
 

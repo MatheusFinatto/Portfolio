@@ -18,51 +18,51 @@ export const featuredProjects: Project[] = [
     id: "01",
     year: "2026",
     name: {
-      en: "Async Order Import",
-      pt: "Importação Assíncrona de Pedidos",
+      en: "Async Webhook Ingestion Platform",
+      pt: "Plataforma de Ingestão Assíncrona de Webhooks",
     },
     desc: {
-      en: "Order import system from CSV files. Background processing handles thousands of rows without slowing down the app. Each import is tracked row by row with a full audit trail accessible via API.",
-      pt: "Sistema de importação de pedidos via CSV. O processamento em segundo plano lida com milhares de linhas sem travar o app. Cada importação é rastreável linha a linha, com histórico completo de auditoria acessível via API.",
+      en: "B2B platform that receives order webhooks from marketplace partners and processes them asynchronously with idempotency and resiliency guarantees. HMAC signature validation, at-least-once delivery, exponential backoff retries, and a dead-letter queue for permanent failures.",
+      pt: "Plataforma B2B que recebe webhooks de pedidos de parceiros marketplace e os processa de forma assíncrona com garantias de idempotência e resiliência. Validação HMAC, entrega at-least-once, retries com backoff exponencial e dead-letter queue para falhas permanentes.",
     },
-    stack: ["NestJS", "PostgreSQL", "Redis", "BullMQ", "Docker"],
+    stack: ["NestJS", "PostgreSQL", "RabbitMQ", "Docker"],
     github: null,
     demo: null,
     techDecisions: {
       en: [
         {
-          title: "Why NestJS?",
-          body: "Coming from React where every architectural decision is yours to make, NestJS felt like a relief. Modules, dependency injection, decorators: everything has a designated place. I picked it partly to learn it properly, partly because it keeps the codebase easy to navigate as it grows.",
+          title: "HMAC validation and idempotency",
+          body: "Requests without a valid HMAC-SHA256 signature are rejected upfront. Event IDs are persisted so duplicate deliveries get detected and discarded. At-least-once delivery without double-processing.",
         },
         {
-          title: "Why a queue instead of processing inline?",
-          body: "Processing a 10k-row CSV inside an HTTP request means the client waits minutes for a response. BullMQ moves the work to a background worker. The API responds immediately with a job ID, and the client polls for progress. The worker can also retry failed rows independently without touching the request cycle.",
+          title: "Why RabbitMQ over inline processing?",
+          body: "Marketplace partners need a fast acknowledgment. Process inline and any internal slowdown (database write, downstream call) becomes their problem. RabbitMQ breaks that coupling: the receiver responds in under 100ms and actual processing happens in a separate consumer.",
         },
         {
-          title: "Per-row audit trail",
-          body: "Each import is modeled as a batch with individual row records. If row 847 fails validation, the client sees exactly which row and why, not just 'import failed'. That design came from thinking about the person who has to debug a broken import at the end of the workday.",
+          title: "Exponential backoff and dead-letter queue",
+          body: "<ul><li>Transient failures retry with exponential backoff</li><li>Messages that exhaust retries go to a DLQ instead of being dropped</li><li>Dedicated endpoint to inspect DLQ contents without touching the database</li></ul>",
         },
         {
-          title: "Self-imposed challenge",
-          body: "Most of this stack (NestJS, Redis, BullMQ, Docker Compose) I hadn't used in production before building this. I picked them deliberately to push myself into backend territory I wasn't comfortable with yet.",
+          title: "ADRs as first-class docs",
+          body: "Every non-obvious decision has an ADR committed alongside the code: what was considered, what was picked, and why. Future maintainers don't have to guess.",
         },
       ],
       pt: [
         {
-          title: "Por que NestJS?",
-          body: "Vindo do React, onde cada decisão de arquitetura é sua, o NestJS foi um alívio. Módulos, injeção de dependência, decorators: tudo tem um lugar certo. Escolhi ele pra aprender de verdade e porque mantém o código navegável conforme cresce.",
+          title: "Validação HMAC e idempotência",
+          body: "Requisições sem assinatura HMAC-SHA256 válida são rejeitadas antes de qualquer coisa. IDs de evento ficam persistidos para detectar e descartar entregas duplicadas. Entrega at-least-once sem reprocessamento.",
         },
         {
-          title: "Por que uma fila em vez de processar na requisição?",
-          body: "Processar um CSV de 10 mil linhas de forma síncrona trava a requisição HTTP por minutos. O BullMQ move o trabalho para um worker em segundo plano. A API responde imediatamente com um ID de job, e o cliente acompanha o progresso. O worker também consegue retentar linhas com falha de forma independente.",
+          title: "Por que RabbitMQ em vez de processamento inline?",
+          body: "Parceiro marketplace quer um 200 rápido. Se você processa o pedido inline, qualquer lentidão interna (write no banco, chamada downstream) é problema deles. O RabbitMQ quebra esse acoplamento: o receiver responde em menos de 100ms e o processamento real acontece num consumer separado.",
         },
         {
-          title: "Rastreamento por linha",
-          body: "Cada importação é modelada como um lote com registros individuais por linha. Se a linha 847 falha na validação, o cliente vê exatamente qual linha e por quê, e não apenas 'importação falhou'. Essa decisão veio de pensar em quem vai debugar uma importação quebrada no final do expediente.",
+          title: "Backoff exponencial e dead-letter queue",
+          body: "<ul><li>Falhas transitórias são retentadas com backoff exponencial</li><li>Mensagens que esgotam as tentativas vão pra uma DLQ em vez de serem descartadas</li><li>Endpoint dedicado pra inspecionar a DLQ sem precisar acessar o banco</li></ul>",
         },
         {
-          title: "Desafio intencional",
-          body: "A maior parte da stack (NestJS, Redis, BullMQ, Docker Compose) eu não tinha usado em produção antes. Escolhi essas tecnologias deliberadamente pra me forçar a avançar no backend.",
+          title: "ADRs como documentação de primeira classe",
+          body: "Cada decisão não óbvia tem um ADR commitado junto ao código: o que foi considerado, o que foi escolhido e por quê. Futuros mantenedores não precisam adivinhar.",
         },
       ],
     },
@@ -85,37 +85,37 @@ export const featuredProjects: Project[] = [
       en: [
         {
           title: "Why a chess engine for a thesis?",
-          body: "I wanted to build something that felt like real CS, not another CRUD app. Chess engines sit at the intersection of algorithms, performance, and game theory. Minimax on paper is one thing; implementing it from scratch and watching it play gives you a completely different understanding.",
+          body: "Didn't want to build another CRUD. Chess engines sit at the intersection of algorithms, performance, and game theory. Minimax on paper is one thing; watching it play after you implement it is another.",
         },
         {
           title: "The Alpha-Beta pruning problem",
-          body: "Without pruning, Minimax explores every possible game state exponentially, making it unplayable at any real search depth. Alpha-Beta skips branches that can't possibly improve the current best result. Getting this right was the hardest part: prune too aggressively and you miss strong moves.",
+          body: "Without pruning, Minimax is exponential and unplayable at any real depth. Alpha-Beta skips branches that can't beat the current best. Getting the balance right was the hardest part: prune too aggressively and you start missing strong moves.",
         },
         {
           title: "Two modes, two purposes",
-          body: "The Lichess bot proves the engine works under real pressure: time limits, varied opponents, no control over input. The React interface serves the opposite case: anyone can play against the machine in the browser, no account needed. They show different things about the same engine.",
+          body: "Two ways to validate the same engine:<ul><li>Lichess bot: real games, time limits, varied opponents, no control over input</li><li>React interface: anyone can play in the browser, no account needed</li></ul>",
         },
         {
           title: "Real opponents, real pressure",
-          body: "Connecting to the Lichess Bot API forced the engine to handle things a scripted opponent would never reveal: timeouts, flagging on time, moves arriving out of order. That validated the engine in a way no unit test could.",
+          body: "A scripted opponent never reveals edge cases. The Lichess API did: timeouts, flagging on time, moves arriving out of order. No unit test would catch that.",
         },
       ],
       pt: [
         {
           title: "Por que um motor de xadrez no TCC?",
-          body: "Queria construir algo que parecesse ciência da computação de verdade, não mais um CRUD. Motores de xadrez ficam na interseção de algoritmos, performance e teoria dos jogos. Minimax no papel é uma coisa; implementar do zero e ver ele jogar é outra completamente diferente.",
+          body: "Não queria fazer mais um CRUD. Motores de xadrez ficam na interseção de algoritmos, performance e teoria dos jogos. Minimax no papel é uma coisa; ver ele jogar depois de implementar é outra.",
         },
         {
           title: "O problema da Poda Alfa-Beta",
-          body: "Sem poda, o Minimax explora cada estado do jogo de forma exponencial, tornando-o injogável em qualquer profundidade real. O Alfa-Beta ignora ramos que não podem melhorar o melhor resultado atual. Acertar isso foi a parte mais difícil: podar demais e você perde jogadas fortes.",
+          body: "Sem poda, o Minimax é exponencial e injogável em qualquer profundidade real. O Alfa-Beta ignora ramos que não podem superar o melhor resultado atual. Acertar o equilíbrio foi a parte mais difícil: podar demais e você começa a perder jogadas fortes.",
         },
         {
           title: "Dois modos, dois propósitos",
-          body: "O bot integrado ao Lichess prova que o motor funciona sob pressão real: tempo limitado, adversários variados, sem controle sobre o input. A interface React serve o caso oposto: qualquer pessoa pode jogar contra a máquina no browser, sem precisar de conta. As duas frentes mostram coisas diferentes sobre o mesmo motor.",
+          body: "Duas formas de validar o mesmo motor:<ul><li>Bot no Lichess: partidas reais, tempo limitado, adversários variados, sem controle sobre o input</li><li>Interface React: qualquer pessoa joga no browser, sem precisar de conta</li></ul>",
         },
         {
           title: "Oponentes reais, pressão real",
-          body: "Conectar à API Bot do Lichess forçou o motor a lidar com coisas que um oponente programado nunca revelaria: timeouts, perda por tempo, movimentos chegando fora de ordem. Isso validou o motor de uma forma que nenhum teste unitário conseguiria.",
+          body: "Oponente programado nunca revela edge cases. A API do Lichess revelou: timeouts, perda por tempo, movimentos chegando fora de ordem. Nenhum teste unitário pegaria isso.",
         },
       ],
     },
@@ -138,29 +138,29 @@ export const featuredProjects: Project[] = [
       en: [
         {
           title: "Why Sanity CMS?",
-          body: "The client is not technical and can't call me every time a new listing needs to go live. Sanity's Studio UI is clean enough for non-developers. I embedded it at /studio so there's nothing extra to install. The client handles all content from there, independently.",
+          body: "The client isn't technical. Sanity's Studio is clean enough for non-developers, embedded at /studio so nothing extra to install. Content updates don't go through me.",
         },
         {
           title: "Next.js over a simpler SPA",
-          body: "Property pages need to rank on Google. Next.js gives server-side rendering for dynamic listings and static generation for pages that rarely change. A plain SPA would've been faster to build but would've hurt local search visibility, a bad tradeoff for a business that depends on it.",
+          body: "Property pages need to rank on Google. A plain SPA would've been faster to build but would've killed local search visibility. Next.js gives SSR for dynamic listings and static generation for pages that rarely change.",
         },
         {
           title: "Structured data for local SEO",
-          body: "I added JSON-LD schema markup (RealEstateAgent + LocalBusiness) to the layout. Invisible to users, but it tells search engines the business name, address, coordinates, and category. This kind of detail is often what separates a site that ranks from one that doesn't.",
+          body: "JSON-LD schema markup (RealEstateAgent + LocalBusiness) in the layout. Invisible to users, but tells search engines the business name, address, coordinates, and category. That detail is often what separates a site that ranks from one that doesn't.",
         },
       ],
       pt: [
         {
           title: "Por que Sanity CMS?",
-          body: "O cliente não é técnico e não pode me ligar toda vez que um imóvel novo precisa ir ao ar. O Studio do Sanity é simples o suficiente pra não-desenvolvedores, então embedei direto no /studio pra não precisar de nada extra. O cliente gerencia todo o conteúdo por lá, de forma independente.",
+          body: "O cliente não é técnico. O Studio do Sanity é simples o suficiente pra não-desenvolvedores, embedado no /studio sem nada extra pra instalar. Atualizações de conteúdo não passam por mim.",
         },
         {
           title: "Next.js em vez de uma SPA simples",
-          body: "Páginas de imóveis precisam aparecer no Google. O Next.js dá SSR para listagens dinâmicas e geração estática para páginas que mudam pouco. Uma SPA comum seria mais rápida de construir, mas prejudicaria o SEO local, um tradeoff ruim pra um negócio que depende disso.",
+          body: "Páginas de imóveis precisam aparecer no Google. Uma SPA seria mais rápida de construir, mas mataria o SEO local. O Next.js dá SSR pra listagens dinâmicas e geração estática pra páginas que mudam pouco.",
         },
         {
           title: "Dados estruturados pra SEO local",
-          body: "Adicionei schema markup JSON-LD (RealEstateAgent + LocalBusiness) ao layout. Invisível pro usuário, mas informa aos buscadores o nome, endereço, coordenadas e ramo da empresa. Esse tipo de detalhe frequentemente separa um site que rankeia de um que não rankeia.",
+          body: "Schema markup JSON-LD (RealEstateAgent + LocalBusiness) no layout. Invisível pro usuário, mas informa aos buscadores o nome, endereço, coordenadas e ramo da empresa. Esse detalhe frequentemente separa um site que rankeia de um que não rankeia.",
         },
       ],
     },
@@ -173,7 +173,7 @@ export const featuredProjects: Project[] = [
       pt: "Pizzaria (Docker)",
     },
     desc: {
-      en: "Full-stack pizzeria platform — frontend, backend, and database all packaged with Docker. Built with vanilla JS, Node.js, and MySQL.",
+      en: "Full-stack pizzeria platform: frontend, backend, and database all packaged with Docker. Built with vanilla JS, Node.js, and MySQL.",
       pt: "Plataforma de pizzaria com frontend, backend e banco de dados, tudo empacotado com Docker. JS puro, Node.js e MySQL.",
     },
     stack: ["Node.js", "JavaScript", "MySQL", "Docker"],
@@ -183,21 +183,21 @@ export const featuredProjects: Project[] = [
       en: [
         {
           title: "Why vanilla JS?",
-          body: "I'd been working with React for a while and wanted to understand what it was doing for me. Building without a framework forces you to manage state, DOM updates, and events manually. It's uncomfortable, and that discomfort was the point.",
+          body: "Had been using React for a while and wanted to understand what it was actually doing for me. Without a framework, you manage state, DOM updates, and events manually. Uncomfortable on purpose.",
         },
         {
           title: "Why Docker?",
-          body: "I wanted the whole stack (frontend, Node.js backend, MySQL) to run with a single <code>docker compose up</code>. No 'works on my machine' problems. Configuring the Dockerfiles and compose file from scratch taught me more about deployment than any tutorial.",
+          body: "Wanted the whole stack (frontend, Node.js backend, MySQL) running with a single <code>docker compose up</code>. No 'works on my machine' issues. Writing the Dockerfiles from scratch taught me more about deployment than any tutorial.",
         },
       ],
       pt: [
         {
           title: "Por que JS puro?",
-          body: "Estava trabalhando com React há um tempo e queria entender o que ele estava fazendo por mim. Construir sem framework te força a gerenciar estado, atualização do DOM e eventos manualmente. É desconfortável, e esse desconforto era o objetivo.",
+          body: "Estava usando React há um tempo e queria entender o que ele fazia por mim. Sem framework, você gerencia estado, DOM e eventos manualmente. Desconfortável de propósito.",
         },
         {
           title: "Por que Docker?",
-          body: "Dois motivos: aprender conteinerização na prática e querer que a stack inteira (frontend, backend Node.js, MySQL) rodasse com um único <code>docker compose up</code>.  Configurar os Dockerfiles e o arquivo compose do zero me ensinou mais sobre deploy do que qualquer tutorial.",
+          body: "Queria a stack inteira (frontend, backend Node.js, MySQL) rodando com um único <code>docker compose up</code>. Sem 'funciona na minha máquina'. Escrever os Dockerfiles do zero me ensinou mais sobre deploy do que qualquer tutorial.",
         },
       ],
     },
