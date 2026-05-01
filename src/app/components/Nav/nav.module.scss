@@ -94,17 +94,20 @@
 }
 
 .langBtn {
-  font-size: 16px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 3px 6px;
   border-radius: 2px;
   border: none;
   cursor: pointer;
   background: transparent;
-  opacity: 0.4;
+  opacity: 0.45;
   transition: opacity 0.15s;
 
-  &:hover { opacity: 0.75; }
+  svg { display: block; border-radius: 1px; }
+
+  &:hover { opacity: 0.8; }
 }
 
 .langActive {

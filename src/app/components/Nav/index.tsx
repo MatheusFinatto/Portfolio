@@ -58,6 +58,31 @@ function MoonIcon() {
   );
 }
 
+function FlagUS() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+      <rect width="20" height="14" fill="#B22234" />
+      <rect y="1.077" width="20" height="1.077" fill="#fff" />
+      <rect y="3.231" width="20" height="1.077" fill="#fff" />
+      <rect y="5.385" width="20" height="1.077" fill="#fff" />
+      <rect y="7.538" width="20" height="1.077" fill="#fff" />
+      <rect y="9.692" width="20" height="1.077" fill="#fff" />
+      <rect y="11.846" width="20" height="1.077" fill="#fff" />
+      <rect width="8" height="7.538" fill="#3C3B6E" />
+    </svg>
+  );
+}
+
+function FlagBR() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+      <rect width="20" height="14" fill="#009C3B" />
+      <polygon points="10,1 19,7 10,13 1,7" fill="#FEDF00" />
+      <circle cx="10" cy="7" r="2.8" fill="#002776" />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const { lang, setLang, theme, toggleTheme } = useApp();
   const copy = t[lang].nav;
@@ -123,14 +148,14 @@ export default function Nav() {
                 onClick={() => setLang("en")}
                 title="English"
               >
-                🇺🇸
+                <FlagUS />
               </button>
               <button
                 className={`${styles.langBtn} ${lang === "pt" ? styles.langActive : ""}`}
                 onClick={() => setLang("pt")}
                 title="Português (BR)"
               >
-                🇧🇷
+                <FlagBR />
               </button>
             </div>
           </li>
@@ -154,14 +179,14 @@ export default function Nav() {
                 onClick={() => setLang("en")}
                 title="English"
               >
-                🇺🇸
+                <FlagUS />
               </button>
               <button
                 className={`${styles.langBtn} ${lang === "pt" ? styles.langActive : ""}`}
                 onClick={() => setLang("pt")}
                 title="Português (BR)"
               >
-                🇧🇷
+                <FlagBR />
               </button>
             </div>
             <button
