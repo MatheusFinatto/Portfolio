@@ -181,10 +181,16 @@
     bottom: 0;
     width: 100%;
     max-height: 95vh;
+    max-height: 95svh;
     height: 95vh;
+    height: 95svh;
     border-left: none;
     border-top: 1px solid var(--border);
     border-radius: 16px 16px 0 0;
     animation: panelInMobile 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .decisions {
+    padding-bottom: max(40px, calc(40px + env(safe-area-inset-bottom)));
   }
 }
