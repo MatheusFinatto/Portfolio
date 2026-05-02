@@ -8,18 +8,10 @@ import styles from './TechDrawer.module.scss';
 interface Props {
   project: Project;
   lang: Lang;
-  narrativeLabel: string;
-  technicalLabel: string;
   onClose: () => void;
 }
 
-export default function TechDrawer({
-  project,
-  lang,
-  narrativeLabel,
-  technicalLabel,
-  onClose,
-}: Props) {
+export default function TechDrawer({ project, lang, onClose }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -31,27 +23,7 @@ export default function TechDrawer({
   }, [onClose]);
 
   const copy = t[lang].projects;
-  const groups = project.techDecisions?.[lang];
-  const narrative = groups?.narrative ?? [];
-  const technical = groups?.technical ?? [];
-
-  const renderGroup = (heading: string, items: Decision[]) => {
-    if (items.length === 0) return null;
-    return (
-      <div className={styles.group}>
-        <div className={styles.groupHeading}>{heading}</div>
-        {items.map((d, i) => (
-          <div key={i} className={styles.decision}>
-            <div className={styles.decisionTitle}>{d.title}</div>
-            <p
-              className={styles.decisionBody}
-              dangerouslySetInnerHTML={{ __html: d.body }}
-            />
-          </div>
-        ))}
-      </div>
-    );
-  };
+  const decisions: Decision[] = project.techDecisions?.[lang] ?? [];
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -79,8 +51,15 @@ export default function TechDrawer({
         </div>
 
         <div className={styles.decisions}>
-          {renderGroup(narrativeLabel, narrative)}
-          {renderGroup(technicalLabel, technical)}
+          {decisions.map((d, i) => (
+            <div key={i} className={styles.decision}>
+              <div className={styles.decisionTitle}>{d.title}</div>
+              <p
+                className={styles.decisionBody}
+                dangerouslySetInnerHTML={{ __html: d.body }}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

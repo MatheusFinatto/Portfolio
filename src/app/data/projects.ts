@@ -1,5 +1,4 @@
 export type Decision = { title: string; body: string };
-export type DecisionGroups = { narrative: Decision[]; technical: Decision[] };
 
 export type Project = {
   id: string;
@@ -11,7 +10,7 @@ export type Project = {
   demo: string | null;
   featured?: boolean;
   isNew?: boolean;
-  techDecisions?: { en: DecisionGroups; pt: DecisionGroups };
+  techDecisions?: { en: Decision[]; pt: Decision[] };
 };
 
 export const featuredProjects: Project[] = [
@@ -30,50 +29,42 @@ export const featuredProjects: Project[] = [
     github: null,
     demo: null,
     techDecisions: {
-      en: {
-        narrative: [
-          {
-            title: "Why RabbitMQ over inline processing?",
-            body: "Marketplace partners need a fast acknowledgment. Process inline and any internal slowdown (database write, downstream call) becomes their problem. RabbitMQ breaks that coupling: the receiver responds in under 100ms and actual processing happens in a separate consumer.",
-          },
-          {
-            title: "ADRs as first-class docs",
-            body: "Every non-obvious decision has an ADR committed alongside the code: what was considered, what was picked, and why. Future maintainers don't have to guess.",
-          },
-        ],
-        technical: [
-          {
-            title: "HMAC validation and idempotency",
-            body: "Requests without a valid HMAC-SHA256 signature are rejected upfront. Event IDs are persisted so duplicate deliveries get detected and discarded. At-least-once delivery without double-processing.",
-          },
-          {
-            title: "Exponential backoff and dead-letter queue",
-            body: "<ul><li>Transient failures retry with exponential backoff</li><li>Messages that exhaust retries go to a DLQ instead of being dropped</li><li>Dedicated endpoint to inspect DLQ contents without touching the database</li></ul>",
-          },
-        ],
-      },
-      pt: {
-        narrative: [
-          {
-            title: "Por que RabbitMQ em vez de processamento inline?",
-            body: "Parceiro marketplace quer um 200 rápido. Se você processa o pedido inline, qualquer lentidão interna (write no banco, chamada downstream) é problema deles. O RabbitMQ quebra esse acoplamento: o receiver responde em menos de 100ms e o processamento real acontece num consumer separado.",
-          },
-          {
-            title: "ADRs como documentação de primeira classe",
-            body: "Cada decisão não óbvia tem um ADR commitado junto ao código: o que foi considerado, o que foi escolhido e por quê. Futuros mantenedores não precisam adivinhar.",
-          },
-        ],
-        technical: [
-          {
-            title: "Validação HMAC e idempotência",
-            body: "Requisições sem assinatura HMAC-SHA256 válida são rejeitadas antes de qualquer coisa. IDs de evento ficam persistidos para detectar e descartar entregas duplicadas. Entrega at-least-once sem reprocessamento.",
-          },
-          {
-            title: "Backoff exponencial e dead-letter queue",
-            body: "<ul><li>Falhas transitórias são retentadas com backoff exponencial</li><li>Mensagens que esgotam as tentativas vão pra uma DLQ em vez de serem descartadas</li><li>Endpoint dedicado pra inspecionar a DLQ sem precisar acessar o banco</li></ul>",
-          },
-        ],
-      },
+      en: [
+        {
+          title: "RabbitMQ over BullMQ",
+          body: "<ul><li>BullMQ was the first candidate: less infrastructure, simpler setup</li><li>AMQP's native dead-letter exchange handles failed message routing without custom retry logic on top of Redis</li><li>Explicit consumer ACK/NACK gives at-least-once guarantees at protocol level, not application level</li></ul>",
+        },
+        {
+          title: "NestJS over Express",
+          body: "<ul><li>Module system enforces domain boundaries at compile time, not convention that erodes under deadlines</li><li>Built-in DI makes consumer isolation testable without mocking the queue transport</li><li>Validation pipes reject malformed payloads at the boundary before anything touches RabbitMQ</li></ul>",
+        },
+        {
+          title: "PostgreSQL for idempotency",
+          body: "<ul><li>Idempotency keyed on <code>event_id</code>; ACID guarantees safe deduplication under concurrent consumers without application-layer coordination</li><li>Queryable event history as a side effect of the same table; audit trail comes for free</li><li>Already in the stack; no extra infrastructure to operate</li></ul>",
+        },
+        {
+          title: "HMAC-SHA256 with timing-safe comparison",
+          body: "<ul><li>Constant-time comparison prevents timing oracle attacks on the signature check</li><li>Validated before any queue interaction; bad signatures never touch RabbitMQ</li></ul>",
+        },
+      ],
+      pt: [
+        {
+          title: "RabbitMQ em vez de BullMQ",
+          body: "<ul><li>BullMQ foi o primeiro candidato: menos infraestrutura, setup mais simples</li><li>O dead-letter exchange nativo do AMQP gerencia o roteamento de mensagens com falha sem lógica de retry customizada em cima do Redis</li><li>ACK/NACK explícito do consumer dá garantias at-least-once no nível do protocolo, não da aplicação</li></ul>",
+        },
+        {
+          title: "NestJS em vez de Express",
+          body: "<ul><li>O sistema de módulos impõe limites de domínio em tempo de compilação, não convenção que se corrói sob pressão de prazo</li><li>DI nativo torna o isolamento de consumers testável sem mockar o transporte de fila</li><li>Validation pipes rejeitam payloads malformados na fronteira antes de qualquer coisa tocar o RabbitMQ</li></ul>",
+        },
+        {
+          title: "PostgreSQL para idempotência",
+          body: "<ul><li>Idempotência por <code>event_id</code>; ACID garante deduplicação segura sob consumers concorrentes sem coordenação na camada de aplicação</li><li>Histórico de eventos consultável como efeito colateral da mesma tabela; audit trail de graça</li><li>Já estava no stack; sem infraestrutura extra para operar</li></ul>",
+        },
+        {
+          title: "HMAC-SHA256 com comparação em tempo constante",
+          body: "<ul><li>Comparação em tempo constante previne ataques de timing oracle na verificação de assinatura</li><li>Validado antes de qualquer interação com a fila; assinaturas inválidas nunca tocam o RabbitMQ</li></ul>",
+        },
+      ],
     },
   },
   {
@@ -91,50 +82,34 @@ export const featuredProjects: Project[] = [
     github: "https://github.com/MatheusFinatto/ChessAI-Final_Thesis",
     demo: "https://chess-matheusfinatto.netlify.app/",
     techDecisions: {
-      en: {
-        narrative: [
-          {
-            title: "Why a chess engine for a thesis?",
-            body: "Didn't want to build another CRUD. Chess engines sit at the intersection of algorithms, performance, and game theory. Minimax on paper is one thing; watching it play after you implement it is another.",
-          },
-          {
-            title: "Two modes, two purposes",
-            body: "Two ways to validate the same engine:<ul><li>Lichess bot: real games, time limits, varied opponents, no control over input</li><li>React interface: anyone can play in the browser, no account needed</li></ul>",
-          },
-          {
-            title: "Real opponents, real pressure",
-            body: "A scripted opponent never reveals edge cases. The Lichess API did: timeouts, flagging on time, moves arriving out of order. No unit test would catch that.",
-          },
-        ],
-        technical: [
-          {
-            title: "The Alpha-Beta pruning problem",
-            body: "Without pruning, Minimax is exponential and unplayable at any real depth. Alpha-Beta skips branches that can't beat the current best. Getting the balance right was the hardest part: prune too aggressively and you start missing strong moves.",
-          },
-        ],
-      },
-      pt: {
-        narrative: [
-          {
-            title: "Por que um motor de xadrez no TCC?",
-            body: "Não queria fazer mais um CRUD. Motores de xadrez ficam na interseção de algoritmos, performance e teoria dos jogos. Minimax no papel é uma coisa; ver ele jogar depois de implementar é outra.",
-          },
-          {
-            title: "Dois modos, dois propósitos",
-            body: "Duas formas de validar o mesmo motor:<ul><li>Bot no Lichess: partidas reais, tempo limitado, adversários variados, sem controle sobre o input</li><li>Interface React: qualquer pessoa joga no browser, sem precisar de conta</li></ul>",
-          },
-          {
-            title: "Oponentes reais, pressão real",
-            body: "Oponente programado nunca revela edge cases. A API do Lichess revelou: timeouts, perda por tempo, movimentos chegando fora de ordem. Nenhum teste unitário pegaria isso.",
-          },
-        ],
-        technical: [
-          {
-            title: "O problema da Poda Alfa-Beta",
-            body: "Sem poda, o Minimax é exponencial e injogável em qualquer profundidade real. O Alfa-Beta ignora ramos que não podem superar o melhor resultado atual. Acertar o equilíbrio foi a parte mais difícil: podar demais e você começa a perder jogadas fortes.",
-          },
-        ],
-      },
+      en: [
+        {
+          title: "Python: one language, two fronts",
+          body: "<ul><li>Flask exposes the engine as an API; React frontend calls it directly, no runtime boundary to bridge</li><li>Same language powers the Lichess bot and the web backend; no context switching</li><li>Measured: not a bottleneck at 5–6 ply depth; faster iteration for algorithm experimentation outweighed raw throughput concerns</li></ul>",
+        },
+        {
+          title: "Alpha-Beta cutoff tuning was the real work",
+          body: "<ul><li>Plain Alpha-Beta prunes correctly but quality depends heavily on move ordering</li><li>Piece-square tables for move ordering → better cutoffs → meaningful depth gains within time limits</li><li>Over-pruning loses strong moves; calibrating that balance took most of the implementation time</li></ul>",
+        },
+        {
+          title: "Lichess over a sandboxed environment",
+          body: "<ul><li>Real opponents are a better stress test than scripted suites: out-of-order moves, clock flagging, network disconnects, edge positions you'd never construct manually</li><li>Bot ELO gives a concrete, comparable quality signal; a private sandbox gives none</li><li>No sandbox; bugs had real game consequences, which forced rigorous edge case handling</li></ul>",
+        },
+      ],
+      pt: [
+        {
+          title: "Python: uma linguagem, duas frentes",
+          body: "<ul><li>Flask expõe o motor como API; frontend React consome diretamente, sem camada de adaptação entre runtimes</li><li>Mesma linguagem no bot do Lichess e no backend web; sem troca de contexto entre runtimes</li><li>Medido: não é gargalo a 5–6 ply; iteração mais rápida para experimentação de algoritmos pesou mais do que preocupações com throughput</li></ul>",
+        },
+        {
+          title: "Ajuste dos cutoffs do Alfa-Beta foi o trabalho de verdade",
+          body: "<ul><li>Alfa-Beta puro poda corretamente, mas a qualidade depende muito da ordenação de movimentos</li><li>Tabelas piece-square para ordenação de movimentos → cutoffs melhores → ganhos reais de profundidade dentro dos limites de tempo</li><li>Poda agressiva demais perde jogadas fortes; calibrar esse equilíbrio consumiu a maior parte do tempo de implementação</li></ul>",
+        },
+        {
+          title: "Lichess em vez de ambiente sandboxed",
+          body: "<ul><li>Adversários reais são stress test melhor que suites programadas: movimentos fora de ordem, perda por tempo, desconexões, posições que jamais seriam construídas manualmente</li><li>ELO do bot dá sinal de qualidade concreto e comparável; sandbox privado não dá nenhum</li><li>Sem sandbox; bugs tinham consequências reais em partidas, o que forçou tratamento rigoroso de edge cases</li></ul>",
+        },
+      ],
     },
   },
   {
@@ -152,42 +127,42 @@ export const featuredProjects: Project[] = [
     github: "https://github.com/MatheusFinatto/site-finatto",
     demo: "https://finattoincorporadora.com.br/",
     techDecisions: {
-      en: {
-        narrative: [
-          {
-            title: "Why Sanity CMS?",
-            body: "The client isn't technical. Sanity's Studio is clean enough for non-developers, embedded at /studio so nothing extra to install. Content updates don't go through me.",
-          },
-          {
-            title: "Next.js over a simpler SPA",
-            body: "Property pages need to rank on Google. A plain SPA would've been faster to build but would've killed local search visibility. Next.js gives SSR for dynamic listings and static generation for pages that rarely change.",
-          },
-        ],
-        technical: [
-          {
-            title: "Structured data for local SEO",
-            body: "JSON-LD schema markup (RealEstateAgent + LocalBusiness) in the layout. Invisible to users, but tells search engines the business name, address, coordinates, and category. That detail is often what separates a site that ranks from one that doesn't.",
-          },
-        ],
-      },
-      pt: {
-        narrative: [
-          {
-            title: "Por que Sanity CMS?",
-            body: "O cliente não é técnico. O Studio do Sanity é simples o suficiente pra não-desenvolvedores, embedado no /studio sem nada extra pra instalar. Atualizações de conteúdo não passam por mim.",
-          },
-          {
-            title: "Next.js em vez de uma SPA simples",
-            body: "Páginas de imóveis precisam aparecer no Google. Uma SPA seria mais rápida de construir, mas mataria o SEO local. O Next.js dá SSR pra listagens dinâmicas e geração estática pra páginas que mudam pouco.",
-          },
-        ],
-        technical: [
-          {
-            title: "Dados estruturados pra SEO local",
-            body: "Schema markup JSON-LD (RealEstateAgent + LocalBusiness) no layout. Invisível pro usuário, mas informa aos buscadores o nome, endereço, coordenadas e ramo da empresa. Esse detalhe frequentemente separa um site que rankeia de um que não rankeia.",
-          },
-        ],
-      },
+      en: [
+        {
+          title: "Why Sanity",
+          body: "<ul><li>Studio embeds at <code>/studio</code>; no separate deployment, no extra login for the client</li><li>GROQ handles relational content queries expressively; fits the listings model well</li><li>Free tier fits a small production client</li></ul>",
+        },
+        {
+          title: "ISR for listings, static for stable pages",
+          body: "<ul><li>Property listings change but not on every request; ISR gives fresh data without per-request SSR cost</li><li>About/contact pages are fully static; no reason to pay SSR latency for content that never changes</li><li>Revalidation interval tuned to actual listing update frequency, not set arbitrarily</li></ul>",
+        },
+        {
+          title: "Styled Components over Tailwind",
+          body: "<ul><li>Theme provider propagates dark mode tokens across all components from a single token set; one change to retheme everything</li><li>Tailwind <code>dark:</code> prefix would scatter token logic across every className</li><li>Scoped styles prevent bleed between property card variants with dynamic data</li></ul>",
+        },
+        {
+          title: "JSON-LD structured data for local SEO",
+          body: "<ul><li><code>RealEstateAgent</code> + <code>LocalBusiness</code> markup in root layout: name, address, coordinates, category</li><li>Often the difference between ranking and not in local search; added before launch, not as an afterthought</li></ul>",
+        },
+      ],
+      pt: [
+        {
+          title: "Por que Sanity",
+          body: "<ul><li>Studio embarcado em <code>/studio</code>; sem deploy separado, sem login extra para o cliente</li><li>GROQ gerencia queries de conteúdo relacional de forma expressiva; encaixa bem no modelo de listagens</li><li>Free tier serve para cliente pequeno em produção</li></ul>",
+        },
+        {
+          title: "ISR para listagens, estático para páginas estáveis",
+          body: "<ul><li>Listagens de imóveis mudam, mas não a cada request; ISR entrega dados frescos sem custo de SSR por request</li><li>Páginas como sobre/contato são totalmente estáticas; sem motivo para pagar latência de SSR por conteúdo que nunca muda</li><li>Intervalo de revalidação calibrado para a frequência real de atualização das listagens, não definido arbitrariamente</li></ul>",
+        },
+        {
+          title: "Styled Components em vez de Tailwind",
+          body: "<ul><li>Theme provider propaga tokens de dark mode por todos os componentes a partir de um único conjunto de tokens; uma mudança para re-tematizar tudo</li><li>O prefixo <code>dark:</code> do Tailwind espalharia a lógica de tokens por cada className</li><li>Estilos escopados evitam vazamento entre variantes de cards de imóveis com dados dinâmicos</li></ul>",
+        },
+        {
+          title: "Dados estruturados JSON-LD para SEO local",
+          body: "<ul><li>Markup <code>RealEstateAgent</code> + <code>LocalBusiness</code> no layout raiz: nome, endereço, coordenadas, ramo</li><li>Frequentemente a diferença entre rankear ou não em busca local; adicionado antes do lançamento, não como afterthought</li></ul>",
+        },
+      ],
     },
   },
   {
@@ -205,32 +180,42 @@ export const featuredProjects: Project[] = [
     github: "https://github.com/MatheusFinatto/Pizzaria-website-with-docker",
     demo: "https://pizzaria-design-showcase.netlify.app/",
     techDecisions: {
-      en: {
-        narrative: [
-          {
-            title: "Why vanilla JS?",
-            body: "Had been using React for a while and wanted to understand what it was actually doing for me. Without a framework, you manage state, DOM updates, and events manually. Uncomfortable on purpose.",
-          },
-          {
-            title: "Why Docker?",
-            body: "Wanted the whole stack (frontend, Node.js backend, MySQL) running with a single <code>docker compose up</code>. No 'works on my machine' issues. Writing the Dockerfiles from scratch taught me more about deployment than any tutorial.",
-          },
-        ],
-        technical: [],
-      },
-      pt: {
-        narrative: [
-          {
-            title: "Por que JS puro?",
-            body: "Estava usando React há um tempo e queria entender o que ele fazia por mim. Sem framework, você gerencia estado, DOM e eventos manualmente. Desconfortável de propósito.",
-          },
-          {
-            title: "Por que Docker?",
-            body: "Queria a stack inteira (frontend, backend Node.js, MySQL) rodando com um único <code>docker compose up</code>. Sem 'funciona na minha máquina'. Escrever os Dockerfiles do zero me ensinou mais sobre deploy do que qualquer tutorial.",
-          },
-        ],
-        technical: [],
-      },
+      en: [
+        {
+          title: "Vanilla JS, no React",
+          body: "<ul><li>Deliberate constraint to understand what React abstracts before reaching for it</li><li>Manual DOM updates and event delegation make the cost of state management explicit; every re-render written by hand</li></ul>",
+        },
+        {
+          title: "Docker Compose for the full stack",
+          body: "<ul><li>Entire stack (static files, Node.js API, MySQL) starts with one <code>docker compose up</code></li><li>Wrote Dockerfiles without relying on base image assumptions; made containerization concrete rather than abstract</li></ul>",
+        },
+        {
+          title: "Relational model: orders, items, pizzas",
+          body: "<ul><li>Order → items → pizzas is a relational domain with clear foreign key chains; no benefit to the document model for a fixed schema</li></ul>",
+        },
+        {
+          title: "Node.js backend",
+          body: "<ul><li>Single language front-to-back; no context switching between runtimes</li><li>Non-blocking I/O handles concurrent order submissions without thread management overhead</li></ul>",
+        },
+      ],
+      pt: [
+        {
+          title: "JS puro, sem React",
+          body: "<ul><li>Restrição deliberada para entender o que o React abstrai antes de usá-lo</li><li>Atualizações manuais de DOM e event delegation tornam o custo do gerenciamento de estado explícito; cada re-render escrito à mão</li></ul>",
+        },
+        {
+          title: "Docker Compose para o stack completo",
+          body: "<ul><li>Stack inteira (arquivos estáticos, API Node.js, MySQL) sobe com um <code>docker compose up</code></li><li>Dockerfiles escritos sem depender de suposições sobre imagens base; tornou containerização concreta em vez de abstrata</li></ul>",
+        },
+        {
+          title: "Modelo relacional: pedidos, itens, pizzas",
+          body: "<ul><li>Pedido → itens → pizzas é um domínio relacional com cadeias claras de foreign key; sem benefício no modelo de documentos para um schema fixo</li></ul>",
+        },
+        {
+          title: "Backend Node.js",
+          body: "<ul><li>Mesma linguagem de ponta a ponta; sem troca de contexto entre runtimes</li><li>I/O não-bloqueante gerencia submissões de pedidos concorrentes sem overhead de gerenciamento de threads</li></ul>",
+        },
+      ],
     },
   },
 ];

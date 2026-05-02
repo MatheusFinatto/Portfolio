@@ -31,9 +31,7 @@ export const t = {
       soon: "GitHub coming soon",
       github: "GitHub",
       demo: "Demo",
-      decisions: "How I built it",
-      decisionsNarrative: "Context & decisions",
-      decisionsTechnical: "Technical details",
+      decisions: "Technical decisions",
     },
     skills: {
       label: "// 02 — SKILLS",
@@ -131,9 +129,7 @@ export const t = {
       soon: "GitHub em breve",
       github: "GitHub",
       demo: "Demo",
-      decisions: "Como construí isso",
-      decisionsNarrative: "Contexto & decisões",
-      decisionsTechnical: "Detalhes técnicos",
+      decisions: "Decisões técnicas",
     },
     skills: {
       label: "// 02 — HABILIDADES",
