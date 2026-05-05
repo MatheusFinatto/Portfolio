@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FiDownload } from "react-icons/fi";
 import { useApp } from "../../context/AppContext";
 import { t } from "../../translations";
 import styles from "./hero.module.scss";
@@ -8,6 +9,10 @@ import styles from "./hero.module.scss";
 export default function Hero() {
   const { lang } = useApp();
   const copy = t[lang].hero;
+  const cvFile =
+    lang === "pt"
+      ? "/Resume-Matheus-Finatto-pt-br.pdf"
+      : "/Resume-Matheus-Finatto-en-us.pdf";
 
   return (
     <section className={styles.hero}>
@@ -42,6 +47,13 @@ export default function Hero() {
           </a>
           <a href="#contact" className="btn-ghost">
             {copy.cta2}
+          </a>
+          <a
+            href={cvFile}
+            download
+            className={`btn-ghost ${styles.cvCta}`}
+          >
+            <FiDownload size={14} /> {copy.cta3}
           </a>
         </div>
 
