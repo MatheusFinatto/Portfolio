@@ -11,6 +11,10 @@
   justify-content: center;
   padding: 0 60px 0 60px;
   position: relative;
+  background: rgba(0, 0, 0, 0.6);
+  [data-theme="light"] & {
+    background: rgba(245, 244, 240, 0.72);
+  }
 }
 
 .eyebrow {
@@ -29,7 +33,6 @@
     display: block;
     width: 40px;
     height: 1px;
-    background: var(--accent);
     flex-shrink: 0;
   }
 }
@@ -165,7 +168,6 @@
   font-family: var(--mono);
   font-size: 11px;
   color: var(--accent);
-  background: rgba(8, 8, 8, 0.75);
   border: 1px solid var(--border);
   padding: 6px 12px;
   border-radius: 2px;
@@ -220,13 +222,8 @@
     padding: 20px 20px;
     position: relative;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
-    [data-theme="light"] & {
-      background: rgba(245, 244, 240, 0.72);
-    }
   }
 
   .right {
@@ -236,13 +233,6 @@
     left: 0;
     height: 100%;
     border: none;
-
-    mask-image:
-      linear-gradient(to left, black 0%, transparent 60%),
-      linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image:
-      linear-gradient(to left, black 0%, transparent 60%),
-      linear-gradient(to bottom, black 60%, transparent 100%);
 
     &::before {
       display: none;
