@@ -14,7 +14,7 @@
   flex-direction: column;
   outline: none;
 
-  &[data-vaul-drawer-direction='right'] {
+  &[data-vaul-drawer-direction="right"] {
     top: 0;
     right: 0;
     bottom: 0;
@@ -23,7 +23,7 @@
     overflow: hidden;
   }
 
-  &[data-vaul-drawer-direction='bottom'] {
+  &[data-vaul-drawer-direction="bottom"] {
     left: 0;
     right: 0;
     bottom: 0;
@@ -40,18 +40,27 @@
 .grabHandleWrap {
   display: flex;
   justify-content: center;
-  padding: 16px 0;
+  padding: 0 12px;
   flex-shrink: 0;
   cursor: grab;
   touch-action: none;
+  position: relative;
 
-  &:active { cursor: grabbing; }
+  &:active {
+    cursor: grabbing;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -100px -200px;
+  }
 }
 
 .grabHandle {
-  width: 56px;
-  height: 6px;
-  border-radius: 3px;
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
   background: var(--border);
 }
 
@@ -97,7 +106,9 @@
   flex-shrink: 0;
   margin-left: 16px;
 
-  &:hover { color: var(--text); }
+  &:hover {
+    color: var(--text);
+  }
 }
 
 .links {
@@ -120,7 +131,9 @@
   border-radius: 4px;
   padding: 8px 14px;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 
   &:hover {
     background: var(--accent);
