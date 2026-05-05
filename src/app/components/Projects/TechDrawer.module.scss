@@ -105,6 +105,8 @@
   transition: color 0.15s;
   flex-shrink: 0;
   margin-left: 16px;
+  position: relative;
+  z-index: 2;
 
   &:hover {
     color: var(--text);
