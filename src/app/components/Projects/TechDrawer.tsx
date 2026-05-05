@@ -47,7 +47,7 @@ export default function TechDrawer({ project, lang, onClose }: Props) {
           )}
           <div className={styles.header}>
             <div className={styles.headerMain}>
-              <div className={styles.projectNum}>{project.id} / {project.year}</div>
+              <div className={styles.projectNum}>{project.year}</div>
               <Drawer.Title className={styles.projectName}>{project.name[lang]}</Drawer.Title>
               <div className={styles.links}>
                 {project.github ? (

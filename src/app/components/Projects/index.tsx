@@ -53,7 +53,7 @@ export default function Projects() {
             key={p.id}
             style={{ transitionDelay: `${idx * 0.08}s` }}
           >
-            <div className={styles.cardNum}>{p.id} / {p.year}</div>
+            <div className={styles.cardNum}>{p.year}</div>
 
             {(p.featured || p.isNew) && (
               <div className={styles.badges}>

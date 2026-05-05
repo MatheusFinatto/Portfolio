@@ -116,7 +116,7 @@ export const featuredProjects: Project[] = [
     id: "03",
     year: "2026",
     name: {
-      en: "Finatto Incorporadora",
+      en: "Finatto Real Estate",
       pt: "Finatto Incorporadora",
     },
     desc: {
