@@ -36,6 +36,10 @@
   overflow: hidden;
 }
 
+.grabHandle {
+  display: none;
+}
+
 .header {
   display: flex;
   align-items: flex-start;
@@ -172,6 +176,21 @@
     border-top: 1px solid var(--border);
     border-radius: 16px 16px 0 0;
     animation: panelInMobile 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: pan-y;
+  }
+
+  .grabHandle {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin: 8px auto 0;
+    flex-shrink: 0;
+  }
+
+  .header {
+    padding-top: 16px;
   }
 
   .decisions {
