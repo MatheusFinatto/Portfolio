@@ -16,10 +16,13 @@
   gap: 14px;
   position: relative;
   transition: background 0.2s, opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: translateY(16px);
 
   &:hover { background: var(--surface2); }
+}
+
+.willAnimate {
+  opacity: 0;
+  transform: translateY(16px);
 }
 
 .visible {

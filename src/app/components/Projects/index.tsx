@@ -16,15 +16,28 @@ export default function Projects() {
   useEffect(() => {
     if (!gridRef.current) return;
     const cards = gridRef.current.querySelectorAll<HTMLElement>('.' + styles.card);
+    if (typeof IntersectionObserver === 'undefined') return;
+    const vh = window.innerHeight;
+    const toAnimate: HTMLElement[] = [];
+    cards.forEach((c) => {
+      const rect = c.getBoundingClientRect();
+      if (rect.top < vh) return;
+      c.classList.add(styles.willAnimate);
+      toAnimate.push(c);
+    });
+    if (!toAnimate.length) return;
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) (e.target as HTMLElement).classList.add(styles.visible);
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add(styles.visible);
+            obs.unobserve(e.target);
+          }
         });
       },
       { threshold: 0.1 }
     );
-    cards.forEach((c) => obs.observe(c));
+    toAnimate.forEach((c) => obs.observe(c));
     return () => obs.disconnect();
   }, []);
 
