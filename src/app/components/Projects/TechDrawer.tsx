@@ -41,9 +41,9 @@ export default function TechDrawer({ project, lang, onClose }: Props) {
         <Drawer.Overlay className={styles.overlay} />
         <Drawer.Content className={styles.panel} aria-describedby={undefined}>
           {direction === 'bottom' && (
-            <div className={styles.grabHandleWrap}>
-              <Drawer.Handle className={styles.grabHandle} />
-            </div>
+            <Drawer.Handle className={styles.grabHandleWrap}>
+              <span className={styles.grabHandle} />
+            </Drawer.Handle>
           )}
           <div className={styles.header}>
             <div className={styles.headerMain}>

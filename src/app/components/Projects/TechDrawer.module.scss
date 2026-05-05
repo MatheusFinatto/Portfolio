@@ -40,14 +40,18 @@
 .grabHandleWrap {
   display: flex;
   justify-content: center;
-  padding-top: 8px;
+  padding: 16px 0;
   flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
+
+  &:active { cursor: grabbing; }
 }
 
 .grabHandle {
-  width: 36px;
-  height: 4px;
-  border-radius: 2px;
+  width: 56px;
+  height: 6px;
+  border-radius: 3px;
   background: var(--border);
 }
 
