@@ -18,15 +18,15 @@ export const featuredProjects: Project[] = [
     id: "01",
     year: "2026",
     name: {
-      en: "Async Webhook Ingestion Platform",
-      pt: "Plataforma de Ingestão Assíncrona de Webhooks",
+      en: "Asynchronous Webhook Ingestion System",
+      pt: "Sistema de Ingestão Assíncrona de Webhooks",
     },
     desc: {
-      en: "B2B platform that receives order webhooks from marketplace partners and processes them asynchronously with idempotency and resiliency guarantees. HMAC signature validation, at-least-once delivery, exponential backoff retries, and a dead-letter queue for permanent failures.",
-      pt: "Plataforma B2B que recebe webhooks de pedidos de parceiros marketplace e os processa de forma assíncrona com garantias de idempotência e resiliência. Validação HMAC, entrega at-least-once, retries com backoff exponencial e dead-letter queue para falhas permanentes.",
+      en: "B2B platform that receives order webhooks from marketplace partners. RabbitMQ decoupling delivers sub-100ms HTTP responses to senders while background workers handle processing, protecting partner SLAs from internal latency. HMAC validation, idempotency via event_id, at-least-once delivery, exponential backoff retries, dead-letter queue with a dedicated inspection endpoint, and correlation_id propagated from request to persistence for end-to-end traceability. Architectural decisions documented as ADRs.",
+      pt: "Plataforma B2B que recebe webhooks de pedidos de parceiros marketplace. Desacoplamento via RabbitMQ entrega respostas HTTP em menos de 100ms aos remetentes enquanto workers em background processam os eventos, protegendo SLAs dos parceiros da latência interna. Validação HMAC, idempotência via event_id, entrega at-least-once, retries com backoff exponencial, dead-letter queue com endpoint dedicado de inspeção e correlation_id propagado da requisição até a persistência para rastreabilidade de ponta a ponta. Decisões arquiteturais documentadas como ADRs.",
     },
     stack: ["NestJS", "PostgreSQL", "RabbitMQ", "Docker"],
-    github: null,
+    github: "https://github.com/MatheusFinatto/async-webhook-ingestion",
     demo: null,
     techDecisions: {
       en: [
