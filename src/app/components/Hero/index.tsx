@@ -13,6 +13,10 @@ export default function Hero() {
     lang === "pt"
       ? "/Resume-Matheus-Finatto-pt-br.pdf"
       : "/Resume-Matheus-Finatto-en-us.pdf";
+  const cvFileAlt =
+    lang === "pt"
+      ? "/Resume-Matheus-Finatto-en-us.pdf"
+      : "/Resume-Matheus-Finatto-pt-br.pdf";
 
   return (
     <section className={styles.hero}>
@@ -48,13 +52,18 @@ export default function Hero() {
           <a href="#contact" className="btn-ghost">
             {copy.cta2}
           </a>
-          <a
-            href={cvFile}
-            download
-            className={`btn-ghost ${styles.cvCta}`}
-          >
-            <FiDownload size={14} /> {copy.cta3}
-          </a>
+          <div className={styles.cvGroup}>
+            <a
+              href={cvFile}
+              download
+              className={`btn-ghost ${styles.cvCta}`}
+            >
+              <FiDownload size={14} /> {copy.cta3}
+            </a>
+            <a href={cvFileAlt} download className={styles.cvAlt}>
+              {copy.cta3Alt}
+            </a>
+          </div>
         </div>
 
         <div className={styles.meta}>

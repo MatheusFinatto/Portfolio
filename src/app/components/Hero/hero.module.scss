@@ -90,13 +90,38 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-items: flex-start;
   margin-bottom: 60px;
+}
+
+.cvGroup {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 
 .cvCta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.cvAlt {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  padding-left: 4px;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
 }
 
 .meta {
@@ -236,10 +261,28 @@
   .ctas {
     gap: 12px;
 
-    > a {
+    > a,
+    > .cvGroup {
       flex: 1 1 100%;
+    }
+
+    > a {
       justify-content: center;
       text-align: center;
+    }
+  }
+
+  .cvGroup {
+    align-items: stretch;
+
+    .cvCta {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .cvAlt {
+      align-self: center;
+      padding-left: 0;
     }
   }
 

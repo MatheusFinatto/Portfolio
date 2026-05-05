@@ -8,7 +8,7 @@ export const t = {
       experience: "Experience",
       about: "About",
       contact: "Contact",
-      resume: "Resume",
+      resume: "Download CV",
     },
     hero: {
       eyebrow: "Fullstack Developer",
@@ -17,6 +17,7 @@ export const t = {
       cta1: "See my work",
       cta2: "Get in touch",
       cta3: "Download CV",
+      cta3Alt: "also in Portuguese",
       loc: "Erechim, RS, Brazil",
       exp: "5+",
       expLabel: "years in production",
@@ -105,7 +106,7 @@ export const t = {
       experience: "Experiência",
       about: "Sobre",
       contact: "Contato",
-      resume: "Currículo",
+      resume: "Baixar currículo",
     },
     hero: {
       eyebrow: "Desenvolvedor Fullstack",
@@ -114,6 +115,7 @@ export const t = {
       cta1: "Ver projetos",
       cta2: "Entrar em contato",
       cta3: "Baixar currículo",
+      cta3Alt: "também em inglês",
       loc: "Erechim, RS, Brasil",
       exp: "5+",
       expLabel: "anos em produção",
