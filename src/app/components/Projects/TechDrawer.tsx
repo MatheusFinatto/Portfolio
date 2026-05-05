@@ -27,12 +27,17 @@ export default function TechDrawer({ project, lang, onClose }: Props) {
   const copy = t[lang].projects;
   const decisions: Decision[] = project.techDecisions?.[lang] ?? [];
 
+  const requestClose = () => {
+    setOpen(false);
+    setTimeout(onClose, 300);
+  };
+
   return (
     <Drawer.Root
       open={open}
       onOpenChange={(o) => {
         setOpen(o);
-        if (!o) onClose();
+        if (!o) setTimeout(onClose, 300);
       }}
       direction={direction}
       handleOnly={direction === 'bottom'}
@@ -64,7 +69,7 @@ export default function TechDrawer({ project, lang, onClose }: Props) {
                 )}
               </div>
             </div>
-            <button className={styles.close} onClick={() => setOpen(false)} aria-label="Close">✕</button>
+            <button className={styles.close} onClick={requestClose} aria-label="Close">✕</button>
           </div>
 
           <div className={styles.decisions}>
