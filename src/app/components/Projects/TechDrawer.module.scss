@@ -1,43 +1,54 @@
-@keyframes overlayIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes panelIn {
-  from { transform: translateX(100%); }
-  to   { transform: translateX(0); }
-}
-
-@keyframes panelInMobile {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
-}
-
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000;
-  animation: overlayIn 0.2s ease;
   backdrop-filter: blur(2px);
 }
 
 .panel {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(480px, 100vw);
+  z-index: 1001;
   background: var(--surface);
-  border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  animation: panelIn 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  outline: none;
+
+  &[data-vaul-drawer-direction='right'] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(480px, 100vw);
+    border-left: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  &[data-vaul-drawer-direction='bottom'] {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 95vh;
+    max-height: 95svh;
+    height: 95vh;
+    height: 95svh;
+    border-top: 1px solid var(--border);
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+.grabHandleWrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  flex-shrink: 0;
 }
 
 .grabHandle {
-  display: none;
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
 }
 
 .header {
@@ -162,33 +173,6 @@
 }
 
 @media (max-width: 600px) {
-  .panel {
-    top: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-height: 95vh;
-    max-height: 95svh;
-    height: 95vh;
-    height: 95svh;
-    border-left: none;
-    border-top: 1px solid var(--border);
-    border-radius: 16px 16px 0 0;
-    animation: panelInMobile 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-    touch-action: pan-y;
-  }
-
-  .grabHandle {
-    display: block;
-    width: 36px;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--border);
-    margin: 8px auto 0;
-    flex-shrink: 0;
-  }
-
   .header {
     padding-top: 16px;
   }
