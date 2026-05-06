@@ -11,9 +11,9 @@
   justify-content: center;
   padding: 0 60px 0 60px;
   position: relative;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0);
   [data-theme="light"] & {
-    background: rgba(245, 244, 240, 0.72);
+    background: rgba(245, 244, 240, 0.5);
   }
 }
 
@@ -152,8 +152,38 @@
 .right {
   position: relative;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 5%, black 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 100%);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 80%,
+    black 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 80%,
+    black 100%
+  );
+
+  [data-theme="light"] & {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 80%,
+      black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 80%,
+      black 100%
+    );
+  }
 }
 
 .photo {
@@ -222,8 +252,13 @@
     padding: 20px 20px;
     position: relative;
     z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+
+    [data-theme="light"] & {
+      background: rgba(245, 244, 240, 0.5);
+    }
   }
 
   .right {
