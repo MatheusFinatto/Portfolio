@@ -14,21 +14,6 @@ Personal portfolio site showcasing 5+ years of production experience in React, T
 - **Analytics:** Vercel Analytics
 - **Deployment:** Vercel
 
-## Running locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Build
-
-```bash
-npm run build
-npm start
-```
 
 ## Project structure
 
@@ -41,7 +26,3 @@ src/app/
 │   └── projects.ts        # Curated featured projects — edit this
 └── styles/                # Global SCSS variables and utilities
 ```
-
-## Adding projects
-
-Edit `src/app/data/projects.ts`. Add screenshots to `public/projects/<name>.png`.
